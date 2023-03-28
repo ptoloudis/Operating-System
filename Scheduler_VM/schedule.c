@@ -91,7 +91,7 @@ void schedule() {
     long last_duration = 0, minExp_BurstTime = 0;
 
 	/* Using this init for the Goodness Algorithm */
-	long min_goodness = 0, maxWaitingTime = 0;
+	long minGoodness, maxWaitingTime = 0;
 
     /* Debugging statements */
     // printf("In schedule\n");
@@ -134,21 +134,21 @@ void schedule() {
             nxt = nxt->next;
             if(minExp_BurstTime > curr->Exp_BurstTime)
                 minExp_BurstTime = curr->Exp_BurstTime;
-            if(sched_clock() - curr->WaitingTime > maxWaitingTime)
+            if(maxWaitingTime < sched_clock() - curr->WaitingTime)
                 maxWaitingTime = sched_clock() - curr->WaitingTime;
         }
 
         /* Calculate the goodness values for all tasks */
-        min_goodness = ((1 + rq->head->next->Exp_BurstTime)/(minExp_BurstTime + 1)) * ((1 + maxWaitingTime)/(1 + (sched_clock() - rq->head->next->WaitingTime)));
+        minGoodness = ((1 + rq->head->next->Exp_BurstTime)/(minExp_BurstTime + 1)) * ((1 + maxWaitingTime)/(1 + sched_clock() - rq->head->next->WaitingTime));
         tmp = rq->head->next;
         for (int i = 0; i < rq->nr_running; i++) {
             if(nxt == rq->head)
                 nxt = nxt->next;
             curr = nxt;
             nxt = nxt->next;
-            tmp->Goodness = ((1 + curr->Exp_BurstTime)/(minExp_BurstTime + 1)) * ((1 + maxWaitingTime)/(1 + (sched_clock() - curr->WaitingTime)));
-            if((tmp->Goodness < min_goodness) && (curr != rq->head)) {
-                min_goodness = tmp->Goodness;
+            tmp->Goodness = ((1 + curr->Exp_BurstTime)/(minExp_BurstTime + 1)) * ((1 + maxWaitingTime)/(1 + sched_clock() - curr->WaitingTime));
+            if((tmp->Goodness <minGoodness) && (curr != rq->head)) {
+                minGoodness = tmp->Goodness;
                 tmp = curr;
             }
         }
@@ -215,7 +215,6 @@ void wake_up_new_task(struct task_struct *p)
 	p->prev = rq->head;
 	p->next->prev = p;
 	p->prev->next = p;
-	
 	rq->nr_running++;
 }
 
@@ -229,8 +228,8 @@ void activate_task(struct task_struct *p)
 	p->prev = rq->head;
 	p->next->prev = p;
 	p->prev->next = p;
-	p->WaitingTime = sched_clock();
 	rq->nr_running++;
+    p->WaitingTime = sched_clock(); /* Set the waiting time to the current time */
 }
 
 /* deactivate_task
