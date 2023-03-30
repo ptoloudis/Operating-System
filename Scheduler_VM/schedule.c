@@ -91,7 +91,7 @@ void schedule() {
     long last_duration = 0, minExp_BurstTime = 0;
 
 	/* Using this init for the Goodness Algorithm */
-	long minGoodness, maxWaitingTime = 0;
+//	long minGoodness, maxWaitingTime = 0;
 
     /* Debugging statements */
     // printf("In schedule\n");
@@ -111,73 +111,73 @@ void schedule() {
         current->Exp_BurstTime = (last_duration + a * current->Exp_BurstTime) / (1 + a);
 
 		/**************** Algorithm with the Exp Burst Time **********************/
-		// minExp_BurstTime = rq->head->next->Exp_BurstTime;
-        // tmp = rq->head->next;
-        // for (int i = 0; i < rq->nr_running; i++) {
-        //     if(nxt == rq->head)
-        //         nxt = nxt->next;
-        //     curr = nxt;
-        //     nxt = nxt->next;
-        //     if(minExp_BurstTime > curr->Exp_BurstTime) {
-        //         minExp_BurstTime = curr->Exp_BurstTime;
-        //         tmp = curr;
-        //     }
-        // }
+//	 minExp_BurstTime = rq->head->next->Exp_BurstTime;
+//         tmp = rq->head->next;
+ //        for (int i = 0; i < rq->nr_running; i++) {
+//             if(nxt == rq->head)
+//                 nxt = nxt->next;
+//             curr = nxt;
+//             nxt = nxt->next;
+//            if(minExp_BurstTime > curr->Exp_BurstTime) {
+//                 minExp_BurstTime = curr->Exp_BurstTime;
+//                 tmp = curr;
+//             }
+//         }
 
 		/**************** Algorithm with the Goodness **********************/
         /* Calculate the minimum expected burst time and maximum waiting time */
-        minExp_BurstTime = rq->head->next->Exp_BurstTime;
-        for (int i = 0; i < rq->nr_running; i++) {
-            if(nxt == rq->head)
-                nxt = nxt->next;
-            curr = nxt;
-            nxt = nxt->next;
-            if(minExp_BurstTime > curr->Exp_BurstTime)
-                minExp_BurstTime = curr->Exp_BurstTime;
-            if(maxWaitingTime < sched_clock() - curr->WaitingTime)
-                maxWaitingTime = sched_clock() - curr->WaitingTime;
-        }
+        //minExp_BurstTime = rq->head->next->Exp_BurstTime;
+        //for (int i = 0; i < rq->nr_running; i++) {
+        //  if(nxt == rq->head)
+        //        nxt = nxt->next;
+        //    curr = nxt;
+        //    nxt = nxt->next;
+        //    if(minExp_BurstTime > curr->Exp_BurstTime)
+        //        minExp_BurstTime = curr->Exp_BurstTime;
+        //    if(maxWaitingTime < sched_clock() - curr->WaitingTime)
+        //        maxWaitingTime = sched_clock() - curr->WaitingTime;
+        //}
 
         /* Calculate the goodness values for all tasks */
-        minGoodness = ((1 + rq->head->next->Exp_BurstTime)/(minExp_BurstTime + 1)) * ((1 + maxWaitingTime)/(1 + sched_clock() - rq->head->next->WaitingTime));
-        tmp = rq->head->next;
-        for (int i = 0; i < rq->nr_running; i++) {
-            if(nxt == rq->head)
-                nxt = nxt->next;
-            curr = nxt;
-            nxt = nxt->next;
-            tmp->Goodness = ((1 + curr->Exp_BurstTime)/(minExp_BurstTime + 1)) * ((1 + maxWaitingTime)/(1 + sched_clock() - curr->WaitingTime));
-            if((tmp->Goodness <minGoodness) && (curr != rq->head)) {
-                minGoodness = tmp->Goodness;
-                tmp = curr;
-            }
-        }
+        // minGoodness = ((1 + rq->head->next->Exp_BurstTime)/(minExp_BurstTime + 1)) * ((1 + maxWaitingTime)/(1 + sched_clock() - rq->head->next->WaitingTime));
+        //tmp = rq->head->next;
+        //for (int i = 0; i < rq->nr_running; i++) {
+        //    if(nxt == rq->head)
+        //        nxt = nxt->next;
+        //    curr = nxt;
+        //    nxt = nxt->next;
+        //    tmp->Goodness = ((1 + curr->Exp_BurstTime)/(minExp_BurstTime + 1)) * ((1 + maxWaitingTime)/(1 + sched_clock() - curr->WaitingTime));
+        //    if((tmp->Goodness <minGoodness) && (curr != rq->head)) {
+        //        minGoodness = tmp->Goodness;
+        //        tmp = curr;
+        //    }
+       // }
 
 
         /* Set the process to be executed next */
 		// This is working for the both algorithms
-        if(current != tmp)
-            tmp->BurstTime = sched_clock();
-
-        if(tmp->next == rq->head)
-            nxt = tmp->next->next;
-        else
-            nxt = tmp->next;
+ //       if(current != tmp)
+ //           tmp->BurstTime = sched_clock();
+//
+//        if(tmp->next == rq->head)
+//            nxt = tmp->next->next;
+//        else
+//            nxt = tmp->next;
 
         /* Debugging statement */
-        if(tmp == rq->head)
-            printf("### Insert at the head ###\n");
+//        if(tmp == rq->head)
+//            printf("### Insert at the head ###\n");
 
-        context_switch(tmp);
+//        context_switch(tmp);
 
         /* Round Robin scheduling */
-        /*
+        
         curr = nxt;
         nxt = nxt->next;
         if(nxt == rq->head)
             nxt = nxt->next;
         context_switch(curr);
-        */
+        
     }
 }
 
