@@ -22,12 +22,14 @@ jobs:
     - name: Build solution
       run: msbuild /p:Configuration=Release
 
-    - name: Run Code Analysis
-      uses: microsoft/CodeAnalysis@v1
+    - name: Run MSVC Code Analysis
+      uses: microsoft/msvc-code-analysis-action@v0.1.1
+      # Provide a unique ID to access the sarif output path
+      id: run-analysis
       with:
-        solution: 'MySolution.sln'
-        build_platform: 'x64'
-        build_configuration: 'Release'
-        analysis_ruleset: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\TeamTools\Static Analysis Tools\\Rule Sets\CppCoreCheckRules.ruleset'
-        analysis_toolset: 'v142'
-        output_directory: '$(Build.SourcesDirectory)\CodeAnalysisOutput'
+          cmakeBuildDirectory: ${{ env.build }}
+          buildConfiguration: ${{ env.config }}
+          # Ruleset file that will determine what checks will be run
+          ruleset: NativeRecommendedRules.ruleset
+          # Paths to ignore analysis of CMake targets and includes
+          # ignoredPaths: ${{ github.workspace }}/dependencies;${{ github.workspace }}/test
