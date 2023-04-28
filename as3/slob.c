@@ -414,7 +414,7 @@ static void *slob_page_alloc(struct page *sp, size_t size, int align,
 
 int slob_page_bestfit(struct page *sp, size_t size, int align, int align_offset)
 {
-	slob_t *prev, *cur, *aligned = NULL, *select_best=NULL;
+	slob_t *prev, *cur, *aligned = NULL, *select_best = NULL;
 	int delta = 0, units = SLOB_UNITS(size), select_delta = 0;
 	slobidx_t avail;
 
@@ -436,7 +436,6 @@ int slob_page_bestfit(struct page *sp, size_t size, int align, int align_offset)
 			delta = aligned - cur;
 		}
 
-		
 		if(avail >= (units + delta)){
 			if(select_best == NULL){
 				select_best = cur;
@@ -459,13 +458,12 @@ int slob_page_bestfit(struct page *sp, size_t size, int align, int align_offset)
 	}
 }
 
-
 /*
  * slob_alloc: entry point into the slob allocator.
  */
-static void *slob_alloc(size_t size, gfp_t gfp, int align, int node,
-							int align_offset)
+static void *slob_alloc(size_t size, gfp_t gfp, int align, int node, int align_offset)
 {
+	// printk("NXP: slob_alloc");
 	struct page *sp;
 	struct list_head *slob_list;
 	slob_t *b = NULL;
@@ -476,21 +474,7 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node,
 		int best = -2, let;
 		struct page *sp_best = NULL;
 	#endif
-
-	#ifdef DEBUG
-		static int count = 0;
-		if(count == 0){
-			printk("NXP: slob_alloc");
-			count++;
-		}
-		else if (count == COUNT)
-			count = 0;
-		else
-			count++;
-	#endif
 		
-
-
 	if (size < SLOB_BREAK1)
 		slob_list = &free_slob_small;
 	else if (size < SLOB_BREAK2)
@@ -500,10 +484,10 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node,
 
 
 #ifdef BESTFIT
+
 	spin_lock_irqsave(&slob_lock, flags);
 	/* Iterate through each partially free page, try to find room */
 	list_for_each_entry(sp, slob_list, slab_list) {
-		page_removed_from_list = false;
 		#ifdef CONFIG_NUMA
 			/*
 			* If there's a node specification, search for a partial
@@ -530,8 +514,9 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node,
 		}
 	}
 
+	page_removed_from_list = false;
 	if (sp_best){
-		b = slob_page_alloc(sp, size, align, align_offset, &page_removed_from_list);
+		b = slob_page_alloc(sp_best, size, align, align_offset, &page_removed_from_list);
 		/*
 		 * If slob_page_alloc() removed sp from the list then we
 		 * cannot call list functions on sp.  If so allocation
@@ -544,8 +529,8 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node,
 			 * search time by starting our next search here. (see
 			 * Knuth vol 1, sec 2.5, pg 449)
 			 */
-			if (!list_is_first(&sp->slab_list, slob_list))
-				list_rotate_to_front(&sp->slab_list, slob_list);
+			if (!list_is_first(&sp_best->slab_list, slob_list))
+				list_rotate_to_front(&sp_best->slab_list, slob_list);
 		}
 	}
 
@@ -556,16 +541,16 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node,
 		b = slob_new_pages(gfp & ~__GFP_ZERO, 0, node);
 		if (!b)
 			return NULL;
-		sp = virt_to_page(b);
-		__SetPageSlab(sp);
+		sp_best = virt_to_page(b);
+		__SetPageSlab(sp_best);
 
 		spin_lock_irqsave(&slob_lock, flags);
-		sp->units = SLOB_UNITS(PAGE_SIZE);
-		sp->freelist = b;
-		INIT_LIST_HEAD(&sp->slab_list);
+		sp_best->units = SLOB_UNITS(PAGE_SIZE);
+		sp_best->freelist = b;
+		INIT_LIST_HEAD(&sp_best->slab_list);
 		set_slob(b, SLOB_UNITS(PAGE_SIZE), b + SLOB_UNITS(PAGE_SIZE));
-		set_slob_page_free(sp, slob_list);
-		b = slob_page_alloc(sp, size, align, align_offset, &_unused);
+		set_slob_page_free(sp_best, slob_list);
+		b = slob_page_alloc(sp_best, size, align, align_offset, &_unused);
 		BUG_ON(!b);
 		spin_unlock_irqrestore(&slob_lock, flags);
 	}
@@ -576,6 +561,7 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node,
 	return b;
 
 #else
+
 	spin_lock_irqsave(&slob_lock, flags);
 	/* Iterate through each partially free page, try to find room */
 	list_for_each_entry(sp, slob_list, slab_list) {
@@ -637,6 +623,7 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node,
 		memset(b, 0, size);
 	return b;
 #endif
+
 }
 
 /*
