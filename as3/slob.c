@@ -75,9 +75,12 @@
 
 #include "slab.h"
 
+// Ours 
 #define BESTFIT // use best fit algorithm
 #define DEBUG   // print debug info
 #define COUNT 6000 // number of allocations
+
+long int alloc_mem = 0 , free_mem = 0; // alloc and free memory
 
 /*
  * slob_block has a field 'units', which indicates size of block if +ve,
@@ -209,6 +212,11 @@ static void *slob_new_pages(gfp_t gfp, int order, int node)
 
 	mod_node_page_state(page_pgdat(page), NR_SLAB_UNRECLAIMABLE,
 			    1 << order);
+
+	// Ours logictic
+	alloc_mem += (PAGE_SIZE * (1 << order));
+	free_mem += (PAGE_SIZE * (1 << order));
+	
 	return page_address(page);
 }
 
@@ -221,6 +229,11 @@ static void slob_free_pages(void *b, int order)
 
 	mod_node_page_state(page_pgdat(sp), NR_SLAB_UNRECLAIMABLE,
 			    -(1 << order));
+
+	// Ours logictic
+	alloc_mem -= (PAGE_SIZE * (1 << order));
+	free_mem -= (PAGE_SIZE * (1 << order));
+	
 	__free_pages(sp, order);
 }
 
@@ -239,8 +252,7 @@ static void slob_free_pages(void *b, int order)
  *         freelist, in this case @page_removed_from_list will be set to
  *         true (set to false otherwise).
  */
-static void *slob_page_alloc(struct page *sp, size_t size, int align,
-			      int align_offset, bool *page_removed_from_list)
+static void *slob_page_alloc(struct page *sp, size_t size, int align, int align_offset, bool *page_removed_from_list)
 {
 	static int count = 0;
 	slob_t *prev, *cur, *aligned = NULL;
@@ -335,6 +347,10 @@ static void *slob_page_alloc(struct page *sp, size_t size, int align,
 					else
 						count++;
 				#endif
+
+				// Ours logictic
+				free_mem -= avail;
+
 				return cur;
 			}
 			if (slob_last(cur)){
@@ -404,6 +420,10 @@ static void *slob_page_alloc(struct page *sp, size_t size, int align,
 		}
 
 		sp->units -= units;
+		
+		// Ours logictic
+		free_mem -= avail;
+		
 		if (!sp->units) {
 			clear_slob_page_free(sp);
 			*page_removed_from_list = true;
@@ -463,7 +483,6 @@ int slob_page_bestfit(struct page *sp, size_t size, int align, int align_offset)
  */
 static void *slob_alloc(size_t size, gfp_t gfp, int align, int node, int align_offset)
 {
-	// printk("NXP: slob_alloc");
 	struct page *sp;
 	struct list_head *slob_list;
 	slob_t *b = NULL;
@@ -481,7 +500,6 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node, int align_o
 		slob_list = &free_slob_medium;
 	else
 		slob_list = &free_slob_large;
-
 
 #ifdef BESTFIT
 
@@ -623,7 +641,6 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node, int align_o
 		memset(b, 0, size);
 	return b;
 #endif
-
 }
 
 /*
@@ -708,6 +725,9 @@ static void slob_free(void *block, int size)
 			set_slob(prev, slob_units(prev), b);
 	}
 out:
+	// Ours logictic
+	free_mem += SLOB_UNITS(size);
+
 	spin_unlock_irqrestore(&slob_lock, flags);
 }
 
