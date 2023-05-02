@@ -234,7 +234,6 @@ static void slob_free_pages(void *b, int order)
 	alloc_mem -= (PAGE_SIZE * (1 << order));
 	free_mem -= (PAGE_SIZE * (1 << order));
 	
-	__free_pages(sp, order);
 }
 
 /*
@@ -349,7 +348,7 @@ static void *slob_page_alloc(struct page *sp, size_t size, int align, int align_
 				#endif
 
 				// Ours logictic
-				free_mem -= avail;
+				free_mem -= size;
 
 				return cur;
 			}
@@ -422,7 +421,7 @@ static void *slob_page_alloc(struct page *sp, size_t size, int align, int align_
 		sp->units -= units;
 		
 		// Ours logictic
-		free_mem -= avail;
+		free_mem -= size;
 		
 		if (!sp->units) {
 			clear_slob_page_free(sp);
@@ -432,6 +431,9 @@ static void *slob_page_alloc(struct page *sp, size_t size, int align, int align_
 	#endif
 }
 
+
+
+// Check if the page have the enough space to fit. Return bolean
 int slob_page_bestfit(struct page *sp, size_t size, int align, int align_offset)
 {
 	slob_t *prev, *cur, *aligned = NULL, *select_best = NULL;
@@ -471,11 +473,10 @@ int slob_page_bestfit(struct page *sp, size_t size, int align, int align_offset)
 	}
 
 	if (select_best == NULL)
-		return -1;
-	else{
-		avail = slob_units(select_best);
-		return (avail - units - delta);
-	}
+		return false;
+	else
+		return true;
+	
 }
 
 /*
@@ -490,7 +491,6 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node, int align_o
 	bool _unused, page_removed_from_list;
 
 	#ifdef BESTFIT
-		int best = -2, let;
 		struct page *sp_best = NULL;
 	#endif
 		
@@ -518,17 +518,15 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node, int align_o
 		if (sp->units < SLOB_UNITS(size))
 			continue;
 
-		let = slob_page_bestfit(sp, size, align, align_offset);
-		if (let == -1)
+		if(!sp_best){ // the first good page
+			if (slob_page_bestfit(sp, size, align, align_offset))
+				sp_best = sp;
 			continue;
-		else if (let == 0){
-			best = let;
-			sp_best = sp;
-			break;
 		}
-		else if ((best == -2) || (let < best)){
-			best = let;
-			sp_best = sp;
+
+		if(sp->units < sp_best->units){ // Check if the 
+			if (slob_page_bestfit(sp, size, align, align_offset))
+				sp_best = sp;
 		}
 	}
 
@@ -671,6 +669,9 @@ static void slob_free(void *block, int size)
 		__ClearPageSlab(sp);
 		page_mapcount_reset(sp);
 		slob_free_pages(b, 0);
+
+		// Ours logictic
+		// free_mem += size;
 		return;
 	}
 
@@ -726,7 +727,7 @@ static void slob_free(void *block, int size)
 	}
 out:
 	// Ours logictic
-	free_mem += SLOB_UNITS(size);
+	free_mem += size;
 
 	spin_unlock_irqrestore(&slob_lock, flags);
 }
