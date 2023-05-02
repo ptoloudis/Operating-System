@@ -1,4 +1,0 @@
-test 1
-size1_count = 4000   # More of Category 1
-size2_count = 2000   # Less of Category 2
-size3_count = 1273   # Less of Category 3
