@@ -77,7 +77,8 @@
 
 // Ours 
 #define BESTFIT // use best fit algorithm
-//	#define DEBUG   // print debug info
+#define DEBUG   // print debug info
+// #define DEBUG2   // print debug info
 #define COUNT 12000 // number of allocations
 
 long int alloc_mem = 0 , free_mem = 0; // alloc and free memory
@@ -256,12 +257,12 @@ static void slob_free_pages(void *b, int order)
  */
 static void *slob_page_alloc(struct page *sp, size_t size, int align, int align_offset, bool *page_removed_from_list)
 {
-	static int count = 0;
 	slob_t *prev, *cur, *aligned = NULL,*select_best = NULL, *select_best_prev = NULL, *best_aligned = NULL, *next;
 	int delta = 0, units = SLOB_UNITS(size);
 	slobidx_t avail;
 	
 	#ifdef DEBUG
+		static int count = 0;
 		if(count == 0){
 			printk("slob_alloc: Request: %d\n", units);
 			printk("slob_alloc: Candidate blocks size: ");
@@ -280,17 +281,17 @@ static void *slob_page_alloc(struct page *sp, size_t size, int align, int align_
 		 * aligned when needed.
 		 */
 
+		#ifdef DEBUG
+			if(count == 0)
+				printk("%d ", avail);
+		#endif
+
 		if (align) {
 			aligned = (slob_t *)
 				(ALIGN((unsigned long)cur + align_offset, align)
 				 - align_offset);
 			delta = aligned - cur;
 		}
-
-		#ifdef DEBUG
-			if(count == 0)
-				printk("%d ", avail);
-		#endif
 
 		if(avail >= (units + delta)){
 			if(select_best == NULL){
@@ -362,7 +363,7 @@ static void *slob_page_alloc(struct page *sp, size_t size, int align, int align_
 	sp->units -= units;
 	
 	// Ours logictic
-	free_mem -= size;
+	// free_mem -= size;
 	
 	if (!sp->units) {
 		clear_slob_page_free(sp);
@@ -378,6 +379,14 @@ int slob_page_bestfit(struct page *sp, size_t size, int align, int align_offset)
 	int delta = 0, units = SLOB_UNITS(size), select_delta = 0;
 	slobidx_t avail;
 
+	#ifdef DEBUG2
+		static int count = 0;
+		if(count == 0){
+			printk("slob_alloc: Request: %d\n", units);
+			printk("slob_alloc: Candidate blocks size: ");
+		}
+	#endif
+
 	for (prev = NULL, cur = sp->freelist; ; prev = cur, cur = slob_next(cur)) {
 		avail = slob_units(cur);
 
@@ -388,6 +397,11 @@ int slob_page_bestfit(struct page *sp, size_t size, int align, int align_offset)
 		 * allocated block with its size, so that the block itself is
 		 * aligned when needed.
 		 */
+
+		#ifdef DEBUG2
+			if(count == 0)
+				printk("%d ", avail);
+		#endif
 
 		if (align) {
 			aligned = (slob_t *)
@@ -406,15 +420,34 @@ int slob_page_bestfit(struct page *sp, size_t size, int align, int align_offset)
 				select_delta = delta;
 			}
 		}
+		
 		if (slob_last(cur))
 			break;
 	}
 
 	if (select_best == NULL)
+	{
+		#ifdef DEBUG2
+			if(count == 0)
+				printk("slob_alloc: Best Fit: None\n");
+			if(count == COUNT*3)
+				count = 0;
+			else
+				count++;
+		#endif
 		return -1;
+	}
 	else{
 		avail = slob_units(select_best);
-		return (avail - units - delta);
+		#ifdef DEBUG2
+			if(count == 0)
+				printk("slob_alloc: Best Fit: %d\n", avail);
+			if(count == COUNT*3)
+				count = 0;
+			else
+				count++;
+		#endif	
+		return (avail - units - select_delta);
 	}
 }
 
@@ -526,6 +559,8 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node, int align_o
 	if (unlikely(gfp & __GFP_ZERO))
 		memset(b, 0, size);
 
+	// Ours logictic
+	free_mem -= size;
 	return b;
 }
 
@@ -623,9 +658,6 @@ static void *slob_page_alloc(struct page *sp, size_t size, int align,
 					count++;
 			#endif
 
-			// Ours logictic
-			free_mem -= size;
-
 			return cur;
 		}
 		if (slob_last(cur)){
@@ -720,6 +752,9 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node,
 	}
 	if (unlikely(gfp & __GFP_ZERO))
 		memset(b, 0, size);
+
+	// Ours logictic
+	free_mem -= size;
 	return b;
 }
 
@@ -756,7 +791,7 @@ static void slob_free(void *block, int size)
 		slob_free_pages(b, 0);
 
 		// Ours logictic
-		// free_mem += size;
+		free_mem += size;
 
 		return;
 	}
