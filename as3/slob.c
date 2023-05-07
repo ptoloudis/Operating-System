@@ -286,7 +286,7 @@ static void *slob_page_alloc(struct page *sp, size_t size, int align, int align_
 				printk("%d ", avail);
 		#endif
 
-		if (align) {
+		if (align) { 
 			aligned = (slob_t *)
 				(ALIGN((unsigned long)cur + align_offset, align)
 				 - align_offset);
@@ -298,6 +298,7 @@ static void *slob_page_alloc(struct page *sp, size_t size, int align, int align_
 				select_best = cur;
 				select_best_prev = prev;
 				best_aligned = aligned;
+
 			}
 			else if(avail < slob_units(select_best)){
 				select_best = cur;
@@ -332,6 +333,7 @@ static void *slob_page_alloc(struct page *sp, size_t size, int align, int align_
 	#endif	
 	
 	avail = slob_units(select_best);
+	delta = 0;
 
 	if (align) {
 		delta = best_aligned - select_best;
@@ -462,8 +464,6 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node, int align_o
 	unsigned long flags;
 	bool _unused, page_removed_from_list;
 	int bestsize = 0, cur = 0;
-
-
 		
 	if (size < SLOB_BREAK1)
 		slob_list = &free_slob_small;
@@ -475,7 +475,7 @@ static void *slob_alloc(size_t size, gfp_t gfp, int align, int node, int align_o
 
 	spin_lock_irqsave(&slob_lock, flags);
 	/* Iterate through each partially free page, try to find room */
-	list_for_each_entry(sp, slob_list, slab_list) {
+	list_for_each_entry(sp, slob_list, slab_list) { // fake for
 		#ifdef CONFIG_NUMA
 			/*
 			* If there's a node specification, search for a partial
