@@ -36,6 +36,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <openssl/sha.h>
 
 #ifdef HAVE_SYS_XATTR_H
 #include <sys/xattr.h>
@@ -50,6 +51,8 @@
 // File descriptors for the our folders
 int blocks_fd;
 int metadata_fd;
+struct node* root;
+int size;
 
 struct node{
     char *hash_value;         //The hash value of the file by SHA1
@@ -91,16 +94,18 @@ struct node* create(char* hash_value) {
     return new_node;
 }
 
-void set_value(struct node* arr, int val){
+int set_value(struct node* arr, int val){
     arr->exist += val;
     return arr->exist;
 }
 
 void insert(char* hash_value) {
     struct node* new_node = create(hash_value);
-    arr = (struct node*) realloc(arr, (size + 1) * sizeof(struct node));
-    arr[size++] = *new_node;
+    root = (struct node*) realloc(root, (size + 1) * sizeof(struct node));
+    root[size++] = *new_node;
+    quicksort(root, 0, size - 1);
 }
+
 struct node* find(struct node* arr, int size, char* hash_value) {
     for (int i = 0; i < size; i++) {
         if (strcmp(arr[i].hash_value, hash_value) == 0) {
@@ -123,9 +128,9 @@ void delete(struct node* arr, int* size, char* hash_value) {
     }
 }
 
-void init(struct node** arr, int* size) {
-    *arr = NULL;
-    *size = 0;
+void init() {
+    root = NULL;
+    size = 0;
 }
 
 void destroy(struct node* arr, int size) {
@@ -171,18 +176,90 @@ static void bb_fullpath(char fpath[PATH_MAX], const char *path)
 int bb_getattr(const char *path, struct stat *statbuf)
 {
     int retstat;
+    unsigned char meta_hash[SHA_DIGEST_LENGTH * 2 + 1] = "";
     char fpath[PATH_MAX];
-    
-    log_msg("\nbb_getattr(path=\"%s\", statbuf=0x%08x)\n",
-	  path, statbuf);
+    char meta_file[PATH_MAX] = "";
+    char meta_path[PATH_MAX] = "";
+    char storage_dir_path[PATH_MAX] = "";
+    char block_path[PATH_MAX] = "";
+    char block_name[PATH_MAX] = ""; 
+    int meta_fd;
+    int file_size;
+    DIR *storage_directory_ptr;
+    struct dirent *file;
+    char *hashtoken;
+    struct stat temp_statbuff;
+    char meta_path_refactored[PATH_MAX] = ""; 
+    int i;
+
+
+    log_msg("\nbb_getattr(path=\"%s\", statbuf=0x%08x)\n", path, statbuf);
     bb_fullpath(fpath, path);
 
     retstat = log_syscall("lstat", lstat(fpath, statbuf), 0);
     
-    log_stat(statbuf);
+    log_msg("retstat is %d\n", retstat);
     
+    if(retstat != 0){
+        return retstat;
+    }
+
+    //Add to "rootdir/meta/{path}"
+    strcat(meta_file, METADATA);
+    // strcpy(meta_path_refactored, path);
+    // for(i = 1; i < strlen(meta_path_refactored); i++){
+    //     if(meta_path_refactored[i] == '/'){
+    //         meta_path_refactored[i] = '-';
+    //     }
+    // }
+    // strcat(meta_file, meta_path_refactored);
+    strcat(meta_file, path);
+    bb_fullpath(meta_path, meta_file);
+
+    // Read Meta File
+    meta_fd = log_syscall("open meta", open(meta_path, O_RDWR, 0666), 0);
+    if(meta_fd < 0){
+        //File Al
+        return retstat; 
+    }
+
+    statbuf->st_size = 0;
+    statbuf->st_blocks = 0;
+
+    while(log_syscall("read meta hash", read(meta_fd, (void *) meta_hash, SHA_DIGEST_LENGTH * 2), 0) != 0){
+        meta_hash[SHA_DIGEST_LENGTH * 2] = '\0';
+
+        strcpy(block_file, BLOCKS);
+        strcat(block_file, meta_hash);
+        bb_fullpath(block_path, block_file);
+        retstat = log_syscall("lstat on storage", lstat(block_path, &temp_statbuff), 0);
+        statbuf->st_size += temp_statbuff.st_size;
+        statbuf->st_blocks += temp_statbuff.st_blocks;
+
+        log_msg("Statbuff Size: %d\n", statbuf->st_size);
+    }
+    
+    log_syscall("close", close(meta_fd), 0);
+    log_stat(statbuf);
+
     return retstat;
 }
+
+// int bb_getattr(const char *path, struct stat *statbuf)
+// {
+//     int retstat;
+//     char fpath[PATH_MAX];
+    
+//     log_msg("\nbb_getattr(path=\"%s\", statbuf=0x%08x)\n",
+// 	  path, statbuf);
+//     bb_fullpath(fpath, path);
+
+//     retstat = log_syscall("lstat", lstat(fpath, statbuf), 0);
+    
+//     log_stat(statbuf);
+    
+//     return retstat;
+// }
 
 /** Read the target of a symbolic link
  *
@@ -265,10 +342,31 @@ int bb_unlink(const char *path)
 {
     char fpath[PATH_MAX];
     
-    log_msg("bb_unlink(path=\"%s\")\n",
-	    path);
-    bb_fullpath(fpath, path);
+    log_msg("bb_unlink(path=\"%s\")\n", path);
+    
+    strcat(meta_file, METADATA);
+    strcpy(meta_path_refactored, path);
+    bb_fullpath(fpath, meta_path_refactored);
 
+    // Read Meta File
+    meta_fd = log_syscall("open meta", open(fpath, O_RDWR, 0666), 0);
+    if(meta_fd < 0){
+        //File Al
+        return BLOCK_SIZE; 
+    }
+
+    while (log_syscall("read meta hash", read(meta_fd, (void *) meta_hash, SHA_DIGEST_LENGTH * 2), 0) != 0){
+        meta_hash[SHA_DIGEST_LENGTH * 2] = '\0';
+        temp = find(root, size, meta_hash);
+        x = set_value(temp, -1);
+        if(x == 0){ 
+            strcat(block_file, BLOCKS);
+            strcat(block_file, meta_hash);
+            bb_fullpath(block_path, block_file);
+            log_syscall("unlink", unlink(block_path), 0);
+        }
+    } 
+    close(meta_fd);
     return log_syscall("unlink", unlink(fpath), 0);
 }
 
@@ -428,6 +526,80 @@ int bb_open(const char *path, struct fuse_file_info *fi)
 // can return with anything up to the amount of data requested. nor
 // with the fusexmp code which returns the amount of data also
 // returned by read.
+
+int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
+{
+    int retstat = 0;
+    char meta_file[PATH_MAX] = "";
+    int meta_fd;
+    unsigned char meta_hash[SHA_DIGEST_LENGTH * 2 + 1] = "";
+    char meta_path[PATH_MAX] = "";
+    char storage_dir_path[PATH_MAX] = "";
+    DIR *storage_directory_ptr;
+    char block_path[PATH_MAX] = "";
+    int block_fd;
+    char block_name[PATH_MAX] = "";    
+    char *hashtoken;
+    struct dirent *file;
+    char block[BLOCK_SIZE] = "";
+    char meta_path_refactored[PATH_MAX] = "";
+    int i = 0;
+    
+    log_msg("\nbb_read(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n", path, buf, size, offset, fi);
+    // no need to get fpath on this one, since I work from fi->fh not the path
+
+    //Add to "rootdir/.meta/{path}"
+    strcat(meta_file, METADATA);
+    // strcpy(meta_path_refactored, path);
+    // for(i = 1; i < strlen(meta_path_refactored); i++){
+    //     if(meta_path_refactored[i] == '/'){
+    //         meta_path_refactored[i] = '-';
+    //     }
+    // } 
+    // strcat(meta_file, meta_path_refactored);
+    strcat(meta_file, path);
+    bb_fullpath(meta_path, meta_file);
+
+    // Read Meta File
+    meta_fd = log_syscall("open meta", open(meta_path, O_RDWR, 0666), 0);
+    if(meta_fd < 0){
+        //File Al
+        return BLOCK_SIZE; 
+    }
+
+    log_syscall("lseek meta", lseek(meta_fd, (offset / BLOCK_SIZE) * (SHA_DIGEST_LENGTH * 2), SEEK_SET), 0);
+
+    i = 0;
+    // TODO: Replace with not only n blocks
+    while(log_syscall("read meta hash", read(meta_fd, (void *) meta_hash, SHA_DIGEST_LENGTH * 2), 0) != 0){
+        meta_hash[SHA_DIGEST_LENGTH * 2] = '\0';
+            
+        //At "rootdir/.blocks/{hash}"
+        // Read Block
+        strcpy(block_file, BLOCKS);
+        strcat(block_file, meta_hash);
+        bb_fullpath(block_path, block_file);
+        block_fd = log_syscall("open block for read", open(block_path, O_RDWR, 0666), 0);
+        log_syscall("read block", read(block_fd, (void*) buf + (i * BLOCK_SIZE), BLOCK_SIZE), 0);
+
+        //Close File
+        log_syscall("close", close(block_fd), 0);
+        memset(block_path, 0, PATH_MAX);
+        if(i == (size / BLOCK_SIZE) - 1){
+            break;
+        }
+
+        i++;
+    }
+
+    log_fi(fi);
+    log_syscall("close", close(meta_fd), 0);
+
+    // return log_syscall("pread", pread(fi->fh, buf, size, offset), 0);
+    return size;
+}
+
+/*
 int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
 {
     int retstat = 0;
@@ -439,6 +611,7 @@ int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
 
     return log_syscall("pread", pread(fi->fh, buf, size, offset), 0);
 }
+*/
 
 /** Write data to an open file
  *
@@ -450,6 +623,126 @@ int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
  */
 // As  with read(), the documentation above is inconsistent with the
 // documentation for the write() system call.
+int bb_write(const char *path, const char *buf, size_t size, off_t offset, struct fuse_file_info *fi){
+    int retstat = 0, i = 0;
+    unsigned char hash[SHA_DIGEST_LENGTH] = "";
+    unsigned char old_hash[SHA_DIGEST_LENGTH * 2 + 1] = "";
+    char fpath[PATH_MAX];
+    char storage_file[PATH_MAX] = "";
+    char meta_file[PATH_MAX] = "";
+    char old_path[PATH_MAX] = "";
+    char new_path[PATH_MAX] = "";
+    int storage_fd;
+    int meta_fd;
+    char raw_name[SHA_DIGEST_LENGTH * 2];
+    struct dirent *file;
+    DIR *storage_directory_ptr;
+    char *hashtoken;
+    char *refcounttoken;
+    int new_ref_count = 0;
+    char new_ref_count_str[12] = {};
+    int found = 0;
+    int bytes_written = BLOCK_SIZE;
+
+    unsigned char search_hash[SHA_DIGEST_LENGTH * 2 + 1] = "";
+    char overwrite_path[PATH_MAX] = "";
+    char old_overwrite_path[PATH_MAX] = "";
+    char meta_path_refactored[PATH_MAX] = "";
+    int i = 0;
+    //Log Write    
+    log_msg("\nbb_write(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n", path, buf, size, offset, fi);
+
+    //Add to "rootdir/meta/{path}"
+    strcat(meta_file, METADATA); 
+    // strcpy(meta_path_refactored, path);
+    // for(i = 1; i < strlen(meta_path_refactored); i++){
+    //     if(meta_path_refactored[i] == '/'){
+    //         meta_path_refactored[i] = '-';
+    //     }
+    // }
+    // strcat(meta_file, meta_path_refactored);
+    strcat(meta_file, path);
+    bb_fullpath(fpath, meta_file);
+
+    // Create Meta File
+    meta_fd = log_syscall("open meta", open(fpath, O_CREAT | O_RDWR, 0666), 0);
+    if(meta_fd < 0){
+        //File Al
+        return BLOCK_SIZE; 
+    }
+
+    log_syscall("lseek meta", lseek(meta_fd, (offset / BLOCKSIZE) * (SHA_DIGEST_LENGTH * 2), SEEK_SET), 0);
+
+    while( size/BLOCKSIZE != i){
+        old_hash = NULL;
+        // read meta file
+        log_syscall("read meta", read(meta_fd, (void *) old_hash, SHA_DIGEST_LENGTH * 2), 0);
+
+        //Create Hash
+        SHA1((unsigned char*) buf + (i * BLOCKSIZE), BLOCKSIZE, hash);
+
+
+        //Add to "rootdir/.blocks/{hash}"
+        strcpy(storage_file, BLOCKS);
+        strcat(storage_file, hash);
+        bb_fullpath(fpath, storage_file);
+
+        // Create Storage File
+        storage_fd = log_syscall("open storage", open(fpath, O_CREAT | O_RDWR, 0666), 0);
+        if(storage_fd < 0){
+            //File Al
+            return BLOCK_SIZE; 
+        }
+
+        // Write to Storage File
+        log_syscall("write storage", write(storage_fd, (void*) buf + (i * BLOCKSIZE), BLOCKSIZE), 0);
+
+        // Close Storage File
+        log_syscall("close", close(storage_fd), 0);
+
+        if (old_hash == NULL){
+            temp = create(hash);
+            insert(temp);
+        }else if( strcmp(old_hash, hash) != 0){
+            temp = find(root, size, old_hash);
+            x = set_value(temp, -1);
+            if(x == 0){
+                // TODO: Delete File to BLOCKS folder
+                delete(root, &size, old_hash);
+                strcpy(overwrite_path, BLOCKS);
+                strcat(overwrite_path, old_hash);
+                bb_fullpath(old_overwrite_path, overwrite_path);
+                log_syscall("unlink", unlink(old_overwrite_path), 0)
+            }
+            temp = find(root, size, hash);
+            if(temp == NULL){
+                temp = create(hash);
+                insert(temp);
+            }else{
+                set_value(temp, 1);
+            }
+        } else {
+            temp = find(root, size, hash);
+            set_value(temp, 1);
+        }        
+
+        // Write to Meta File
+        log_syscall("write meta", write(meta_fd, (void *) hash, SHA_DIGEST_LENGTH), 0);
+
+        i++;
+
+    }
+    
+    log_syscall("ovewrite old hash", write(meta_fd, (void *) raw_name, (SHA_DIGEST_LENGTH * 2)), 0);
+   
+    // Close Meta File
+    log_syscall("close", close(meta_fd), 0);
+    
+    return bytes_written;
+}
+
+
+/*
 int bb_write(const char *path, const char *buf, size_t size, off_t offset,
 	     struct fuse_file_info *fi)
 {
@@ -463,6 +756,7 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset,
 
     return log_syscall("pwrite", pwrite(fi->fh, buf, size, offset), 0);
 }
+*/
 
 /** Get file system statistics
  *
@@ -803,6 +1097,10 @@ void *bb_init(struct fuse_conn_info *conn)
     bb_fullpath(path, METADATA);
     blocks_fd = log_syscall("Creating Metadata directory", mkdir(path, S_IRWXU), 0);
     
+    //Create a directory to store the hash values
+    init();
+    blocks_fd = log_syscall("Init the array");
+
     log_conn(conn);
     log_fuse_context(fuse_get_context());
     
