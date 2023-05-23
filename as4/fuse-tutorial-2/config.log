@@ -708,7 +708,6 @@ config.status:885: creating Makefile
 config.status:885: creating html/Makefile
 config.status:885: creating src/Makefile
 config.status:885: creating src/config.h
-config.status:1066: src/config.h is unchanged
 config.status:1114: executing depfiles commands
 
 ## ---------------- ##
@@ -801,7 +800,7 @@ pkg_cv_FUSE_LIBS='-lfuse -pthread'
 ## Output variables. ##
 ## ----------------- ##
 
-ACLOCAL='${SHELL} /mnt/d/Github/Operating-System/as4/fuse-tutorial/missing aclocal-1.15'
+ACLOCAL='${SHELL} /mnt/d/Github/Operating-System/as4/fuse-tutorial-2/missing aclocal-1.15'
 AMDEPBACKSLASH='\'
 AMDEP_FALSE='#'
 AMDEP_TRUE=''
@@ -810,9 +809,9 @@ AM_BACKSLASH='\'
 AM_DEFAULT_V='$(AM_DEFAULT_VERBOSITY)'
 AM_DEFAULT_VERBOSITY='1'
 AM_V='$(V)'
-AUTOCONF='${SHELL} /mnt/d/Github/Operating-System/as4/fuse-tutorial/missing autoconf'
-AUTOHEADER='${SHELL} /mnt/d/Github/Operating-System/as4/fuse-tutorial/missing autoheader'
-AUTOMAKE='${SHELL} /mnt/d/Github/Operating-System/as4/fuse-tutorial/missing automake-1.15'
+AUTOCONF='${SHELL} /mnt/d/Github/Operating-System/as4/fuse-tutorial-2/missing autoconf'
+AUTOHEADER='${SHELL} /mnt/d/Github/Operating-System/as4/fuse-tutorial-2/missing autoheader'
+AUTOMAKE='${SHELL} /mnt/d/Github/Operating-System/as4/fuse-tutorial-2/missing automake-1.15'
 AWK='gawk'
 CC='gcc'
 CCDEPMODE='depmode=gcc3'
@@ -838,7 +837,7 @@ LDFLAGS=''
 LIBOBJS=''
 LIBS=''
 LTLIBOBJS=''
-MAKEINFO='${SHELL} /mnt/d/Github/Operating-System/as4/fuse-tutorial/missing makeinfo'
+MAKEINFO='${SHELL} /mnt/d/Github/Operating-System/as4/fuse-tutorial-2/missing makeinfo'
 MKDIR_P='/usr/bin/mkdir -p'
 OBJEXT='o'
 PACKAGE='fuse-tutorial'
@@ -879,7 +878,7 @@ host_alias=''
 htmldir='${docdir}'
 includedir='${prefix}/include'
 infodir='${datarootdir}/info'
-install_sh='${SHELL} /mnt/d/Github/Operating-System/as4/fuse-tutorial/install-sh'
+install_sh='${SHELL} /mnt/d/Github/Operating-System/as4/fuse-tutorial-2/install-sh'
 libdir='${exec_prefix}/lib'
 libexecdir='${exec_prefix}/libexec'
 localedir='${datarootdir}/locale'

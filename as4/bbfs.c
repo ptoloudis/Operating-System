@@ -45,7 +45,7 @@
 
 #include "log.h"
 
-#define METADATA "/.metadata"
+#define METADATA "/.metadata/"
 #define BLOCKS "/.blocks/"
 #define LOAD "/.load"
 #define BLOCKSIZE 4096
@@ -723,7 +723,6 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
 
     log_syscall("lseek meta", lseek(meta_fd, (offset / BLOCKSIZE) * (SHA_DIGEST_LENGTH * 2), SEEK_SET), 0);
 
-    log_msg("i = %d\n", i);
     while( size/BLOCKSIZE != i || !endfile){
         // read meta file
         length = log_syscall("read meta", read(meta_fd, (void *) old_hash, SHA_DIGEST_LENGTH * 2), 0);
@@ -735,13 +734,11 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
 
         //Create Hash
         SHA1((unsigned char*) buf + (i * BLOCKSIZE), BLOCKSIZE, hash);
-        for (int j=0; j < SHA_DIGEST_LENGTH; j++) {
-            sprintf((char*)&(raw_name[j*2]), "%02x", hash[j]);
-        }
+
 
         //Add to "rootdir/.blocks/{hash}"
         strcpy(storage_file, BLOCKS);
-        strcat(storage_file, raw_name);
+        strcat(storage_file, hash);
         bb_fullpath(fpath, storage_file);
 
         // Create Storage File
@@ -779,22 +776,18 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         }        
 
         // Write to Meta File
-        log_syscall("write meta", write(meta_fd, (void *) raw_name, SHA_DIGEST_LENGTH), 0);
+        log_syscall("write meta", write(meta_fd, (void *) hash, SHA_DIGEST_LENGTH), 0);
         memset(old_hash, 0, SHA_DIGEST_LENGTH * 2 + 1);
         i++;
     }
     
-    log_msg("i = %d\n", i);
     while( size/BLOCKSIZE != i && endfile){
          //Create Hash
         SHA1((unsigned char*) buf + (i * BLOCKSIZE), BLOCKSIZE, hash);
-        for (int j=0; j < SHA_DIGEST_LENGTH; j++) {
-            sprintf((char*)&(raw_name[j*2]), "%02x", hash[j]);
-        }
 
         //Add to "rootdir/.blocks/{hash}"
         strcpy(storage_file, BLOCKS);
-        strcat(storage_file, raw_name);
+        strcat(storage_file, hash);
         bb_fullpath(fpath, storage_file);
 
         // Create Storage File
@@ -819,47 +812,7 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         }        
 
         // Write to Meta File
-        log_syscall("write meta", write(meta_fd, (void *) raw_name, SHA_DIGEST_LENGTH), 0);
-        i++;
-    }
-
-    if(size >0 && size < BLOCKSIZE){
-        log_msg("buf=0x%08x", buf);
-        SHA1((unsigned char*) buf + (i * BLOCKSIZE), BLOCKSIZE, hash);
-        for (int j=0; j < SHA_DIGEST_LENGTH; j++) {
-            sprintf((char*)&(raw_name[j*2]), "%02x", hash[j]);
-        }
-
-        //Add to "rootdir/.blocks/{hash}"
-        strcpy(storage_file, BLOCKS);
-        strcat(storage_file, raw_name);
-        bb_fullpath(fpath, storage_file);
-
-        // Create Storage File
-        storage_fd = log_syscall("open storage", open(fpath, O_CREAT | O_RDWR, 0666), 0);
-        if(storage_fd < 0){
-            //File Al
-            return BLOCKSIZE; 
-        }
-
-        // Write to Storage File
-        log_msg("buf=0x%08x\n", buf);
-        log_msg("%d buf=0x%08x\n", i, buf + (i * BLOCKSIZE));
-        log_syscall("write storage", write(storage_fd, (void*) buf + (i * BLOCKSIZE), size), 0);
-
-        // Close Storage File
-        log_syscall("close", close(storage_fd), 0);
-
-        
-        if (myfind(hash) == NULL)
-            myinsert(hash);
-        else{        
-            temp = myfind(hash);
-            set_value(temp, 1);
-        }        
-
-        // Write to Meta File
-        log_syscall("write meta", write(meta_fd, (void *) raw_name, SHA_DIGEST_LENGTH), 0);
+        log_syscall("write meta", write(meta_fd, (void *) hash, SHA_DIGEST_LENGTH), 0);
         i++;
     }
     

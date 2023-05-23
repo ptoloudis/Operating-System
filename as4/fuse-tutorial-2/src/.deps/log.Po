@@ -1,4 +1,4 @@
-bbfs.o: bbfs.c /usr/include/stdc-predef.h config.h params.h \
+log.o: log.c /usr/include/stdc-predef.h params.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
  /usr/include/limits.h \
@@ -35,20 +35,12 @@ bbfs.o: bbfs.c /usr/include/stdc-predef.h config.h params.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/ctype.h \
- /usr/include/x86_64-linux-gnu/bits/endian.h \
- /usr/include/x86_64-linux-gnu/bits/endianness.h /usr/include/dirent.h \
- /usr/include/x86_64-linux-gnu/bits/dirent.h \
- /usr/include/x86_64-linux-gnu/bits/dirent_ext.h /usr/include/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/errno.h \
  /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
  /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/fcntl.h /usr/include/x86_64-linux-gnu/bits/fcntl.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
- /usr/include/x86_64-linux-gnu/bits/stat.h \
- /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl2.h /usr/include/fuse/fuse.h \
- /usr/include/fuse/fuse_common.h /usr/include/fuse/fuse_opt.h \
+ /usr/include/fuse/fuse.h /usr/include/fuse/fuse_common.h \
+ /usr/include/fuse/fuse_opt.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
@@ -63,18 +55,24 @@ bbfs.o: bbfs.c /usr/include/stdc-predef.h config.h params.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
- /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl2.h /usr/include/time.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endianness.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
  /usr/include/utime.h /usr/include/x86_64-linux-gnu/sys/stat.h \
  /usr/include/x86_64-linux-gnu/sys/statvfs.h \
  /usr/include/x86_64-linux-gnu/bits/statvfs.h \
  /usr/include/x86_64-linux-gnu/sys/uio.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
- /usr/include/libgen.h /usr/include/stdlib.h \
- /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
@@ -84,16 +82,8 @@ bbfs.o: bbfs.c /usr/include/stdc-predef.h config.h params.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
  /usr/include/x86_64-linux-gnu/bits/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /usr/include/openssl/sha.h /usr/include/openssl/macros.h \
- /usr/include/x86_64-linux-gnu/openssl/opensslconf.h \
- /usr/include/x86_64-linux-gnu/openssl/configuration.h \
- /usr/include/openssl/opensslv.h /usr/include/openssl/e_os2.h \
- /usr/include/inttypes.h \
- /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
- /usr/include/x86_64-linux-gnu/sys/xattr.h log.h
+ /usr/include/x86_64-linux-gnu/bits/unistd_ext.h log.h
 /usr/include/stdc-predef.h:
-config.h:
 params.h:
 /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
 /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h:
@@ -134,24 +124,12 @@ params.h:
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 /usr/include/x86_64-linux-gnu/bits/stdio.h:
 /usr/include/x86_64-linux-gnu/bits/stdio2.h:
-/usr/include/ctype.h:
-/usr/include/x86_64-linux-gnu/bits/endian.h:
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
-/usr/include/dirent.h:
-/usr/include/x86_64-linux-gnu/bits/dirent.h:
-/usr/include/x86_64-linux-gnu/bits/dirent_ext.h:
 /usr/include/errno.h:
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 /usr/include/linux/errno.h:
 /usr/include/x86_64-linux-gnu/asm/errno.h:
 /usr/include/asm-generic/errno.h:
 /usr/include/asm-generic/errno-base.h:
-/usr/include/fcntl.h:
-/usr/include/x86_64-linux-gnu/bits/fcntl.h:
-/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
-/usr/include/x86_64-linux-gnu/bits/stat.h:
-/usr/include/x86_64-linux-gnu/bits/struct_stat.h:
-/usr/include/x86_64-linux-gnu/bits/fcntl2.h:
 /usr/include/fuse/fuse.h:
 /usr/include/fuse/fuse_common.h:
 /usr/include/fuse/fuse_opt.h:
@@ -171,10 +149,18 @@ params.h:
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
+/usr/include/fcntl.h:
+/usr/include/x86_64-linux-gnu/bits/fcntl.h:
+/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
+/usr/include/x86_64-linux-gnu/bits/stat.h:
+/usr/include/x86_64-linux-gnu/bits/struct_stat.h:
+/usr/include/x86_64-linux-gnu/bits/fcntl2.h:
 /usr/include/time.h:
 /usr/include/x86_64-linux-gnu/bits/time.h:
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 /usr/include/utime.h:
 /usr/include/x86_64-linux-gnu/sys/stat.h:
@@ -182,7 +168,6 @@ params.h:
 /usr/include/x86_64-linux-gnu/bits/statvfs.h:
 /usr/include/x86_64-linux-gnu/sys/uio.h:
 /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h:
-/usr/include/libgen.h:
 /usr/include/stdlib.h:
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
@@ -197,13 +182,4 @@ params.h:
 /usr/include/x86_64-linux-gnu/bits/confname.h:
 /usr/include/x86_64-linux-gnu/bits/unistd.h:
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
-/usr/include/openssl/sha.h:
-/usr/include/openssl/macros.h:
-/usr/include/x86_64-linux-gnu/openssl/opensslconf.h:
-/usr/include/x86_64-linux-gnu/openssl/configuration.h:
-/usr/include/openssl/opensslv.h:
-/usr/include/openssl/e_os2.h:
-/usr/include/inttypes.h:
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h:
-/usr/include/x86_64-linux-gnu/sys/xattr.h:
 log.h:
