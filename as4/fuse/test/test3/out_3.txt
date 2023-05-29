@@ -1,0 +1,156 @@
+
+  Test test3.sh
+
+Mount the file system
+mkdir -p mountdir
+mkdir -p rootdir
+# echo "bogus file" > rootdir/bogus.txt
+
+  Start the test3.sh
+
+Add the first file
+
+ls in mountdir
+total 20
+-rw-rw-r-- 1 ptolou ptolou 19451 May 29 19:56 output.txt
+
+ls in rootdir
+rootdir:
+total 16
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 5 ptolou ptolou 4096 May 29 19:55 ..
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .blocks
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .metadata
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 19:56 output.txt
+
+rootdir/.blocks:
+total 28
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 ..
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 323af8352998a9305463a5f2ef4035c392210efa
+-rw-rw-r-- 1 ptolou ptolou 3067 May 29 19:56 7a6bc4c9f5e68a1e5a0b9a3ce3ede2308968314f
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 8e34d64c770ca735f6dedada2137aee122f27fbd
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 c09e0103195ca9e7093231422d0e90e1b1498d44
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 c7a0a993c296539f3f700ec4e482694f226449f8
+
+rootdir/.metadata:
+total 12
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 ..
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 19:56 output.txt
+
+Add the second file
+
+ls in mountdir
+total 40
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 19:56 output3.txt
+-rw-rw-r-- 1 ptolou ptolou 19451 May 29 19:56 output.txt
+
+ls in rootdir
+rootdir:
+total 16
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 5 ptolou ptolou 4096 May 29 19:55 ..
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .blocks
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .metadata
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 19:56 output3.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 19:56 output.txt
+
+rootdir/.blocks:
+total 40
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 ..
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 033898c13b67ff82c8562f3ccdd93b5fa376fe49
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 15ebb3d8eb981f1cfc1e5612d56dcf5bd8c165a0
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 1b61a5f6635d65dfc346f448c35c5e1890176007
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 323af8352998a9305463a5f2ef4035c392210efa
+-rw-rw-r-- 1 ptolou ptolou 3067 May 29 19:56 7a6bc4c9f5e68a1e5a0b9a3ce3ede2308968314f
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 8e34d64c770ca735f6dedada2137aee122f27fbd
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 c09e0103195ca9e7093231422d0e90e1b1498d44
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 c7a0a993c296539f3f700ec4e482694f226449f8
+
+rootdir/.metadata:
+total 16
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 ..
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 19:56 output3.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 19:56 output.txt
+
+Remove the first file
+
+ls in mountdir
+total 20
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 19:56 output3.txt
+
+ls in rootdir
+rootdir:
+total 16
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 5 ptolou ptolou 4096 May 29 19:55 ..
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .blocks
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .metadata
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 19:56 output3.txt
+
+rootdir/.blocks:
+total 28
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 ..
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 033898c13b67ff82c8562f3ccdd93b5fa376fe49
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 15ebb3d8eb981f1cfc1e5612d56dcf5bd8c165a0
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 1b61a5f6635d65dfc346f448c35c5e1890176007
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 323af8352998a9305463a5f2ef4035c392210efa
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 19:56 c7a0a993c296539f3f700ec4e482694f226449f8
+
+rootdir/.metadata:
+total 12
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 ..
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 19:56 output3.txt
+
+Remove the first file
+
+ls in mountdir
+total 0
+
+ls in rootdir
+rootdir:
+total 16
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 5 ptolou ptolou 4096 May 29 19:55 ..
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .blocks
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .metadata
+
+rootdir/.blocks:
+total 8
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 ..
+
+rootdir/.metadata:
+total 8
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 ..
+
+Unmount the file system
+
+ls in mountdir
+total 0
+
+ls in rootdir
+rootdir:
+total 16
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 5 ptolou ptolou 4096 May 29 19:55 ..
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .blocks
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .metadata
+
+rootdir/.blocks:
+total 8
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 ..
+
+rootdir/.metadata:
+total 8
+drwx------ 2 ptolou ptolou 4096 May 29 19:56 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 19:56 ..
+
+Test test3.sh finished

@@ -1,0 +1,220 @@
+
+  Test test4.sh
+
+Mount the file system
+mkdir -p mountdir
+mkdir -p rootdir
+# echo "bogus file" > rootdir/bogus.txt
+
+  Start the test4.sh
+
+Add the all the files
+
+ls in mountdir
+total 260
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test10.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test11.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test12.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test13.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test1.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test2.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test3.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test4.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test5.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test6.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test7.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test8.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test9.txt
+
+ls in rootdir
+rootdir:
+total 16
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 20:03 .
+drwxrwxr-x 5 ptolou ptolou 4096 May 29 20:03 ..
+drwx------ 2 ptolou ptolou 4096 May 29 20:03 .blocks
+drwx------ 2 ptolou ptolou 4096 May 29 20:03 .metadata
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test10.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test11.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test12.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test13.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test1.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test2.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test3.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test4.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test5.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test6.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test7.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test8.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test9.txt
+
+rootdir/.blocks:
+total 80
+drwx------ 2 ptolou ptolou 4096 May 29 20:03 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 20:03 ..
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 14751508a7066782b60670cdb22e3b02a085131e
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 215133c58ec8478c59281d256fe8d0947ca14901
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 33f0d7f4de2cf6d6d91efadd40e00a934d525366
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 377a35744f67c0c3739636416c039cc748738336
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 387f369d76017840f415e5681cfb87c085cf49fe
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 4dc73519659769f92994826a342e064db40e492e
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 5df64b8098d030ad81439e2c7653df9dcf6bc407
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 6729fae51be356e274086035096e64643da69ecb
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 6bae0c5c9982442bca8179a9a5c1d44303179374
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 80ebb23ed4ab0e89f781c403e1794d21d4b0697f
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 880b4e745bedcedd0673cc2973d753b9e3129405
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 8fb3bd725a4eb80c2fd2a34f887b49284127ad12
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 aff3a08f17e2977bfc160bb498a8049129d68224
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 b8d7fac544618a21ed155a729dc08b28b8f1e201
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 d5ac63c2a164a6283520b18abe994cba5676d549
+
+rootdir/.metadata:
+total 60
+drwx------ 2 ptolou ptolou 4096 May 29 20:03 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 20:03 ..
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test10.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test11.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test12.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test13.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test1.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test2.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test3.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test4.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test5.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test6.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test7.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test8.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test9.txt
+
+ls in mountdir
+total 200
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test10.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test12.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test13.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test1.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test2.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test3.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test4.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test5.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test7.txt
+-rw-rw-r-- 1 ptolou ptolou 20480 May 29 20:03 test8.txt
+
+ls in rootdir
+rootdir:
+total 16
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 20:03 .
+drwxrwxr-x 5 ptolou ptolou 4096 May 29 20:03 ..
+drwx------ 2 ptolou ptolou 4096 May 29 20:03 .blocks
+drwx------ 2 ptolou ptolou 4096 May 29 20:03 .metadata
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test10.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test12.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test13.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test1.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test2.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test3.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test4.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test5.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test7.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test8.txt
+
+rootdir/.blocks:
+total 76
+drwx------ 2 ptolou ptolou 4096 May 29 20:03 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 20:03 ..
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 14751508a7066782b60670cdb22e3b02a085131e
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 215133c58ec8478c59281d256fe8d0947ca14901
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 33f0d7f4de2cf6d6d91efadd40e00a934d525366
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 377a35744f67c0c3739636416c039cc748738336
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 387f369d76017840f415e5681cfb87c085cf49fe
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 4dc73519659769f92994826a342e064db40e492e
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 5df64b8098d030ad81439e2c7653df9dcf6bc407
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 6729fae51be356e274086035096e64643da69ecb
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 6bae0c5c9982442bca8179a9a5c1d44303179374
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 80ebb23ed4ab0e89f781c403e1794d21d4b0697f
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 880b4e745bedcedd0673cc2973d753b9e3129405
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 8fb3bd725a4eb80c2fd2a34f887b49284127ad12
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 aff3a08f17e2977bfc160bb498a8049129d68224
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 b8d7fac544618a21ed155a729dc08b28b8f1e201
+
+rootdir/.metadata:
+total 48
+drwx------ 2 ptolou ptolou 4096 May 29 20:03 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 20:03 ..
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test10.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test12.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test13.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test1.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test2.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test3.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test4.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test5.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test7.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test8.txt
+
+Unmount the file system
+
+ls in mountdir
+total 0
+
+ls in rootdir
+rootdir:
+total 20
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 20:03 .
+drwxrwxr-x 5 ptolou ptolou 4096 May 29 20:03 ..
+drwx------ 2 ptolou ptolou 4096 May 29 20:03 .blocks
+-rw-rw-r-- 1 ptolou ptolou  731 May 29 20:03 .load
+drwx------ 2 ptolou ptolou 4096 May 29 20:03 .metadata
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test10.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test12.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test13.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test1.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test2.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test3.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test4.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test5.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test7.txt
+-rw-rw-r-- 1 ptolou ptolou    0 May 29 20:03 test8.txt
+
+rootdir/.blocks:
+total 76
+drwx------ 2 ptolou ptolou 4096 May 29 20:03 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 20:03 ..
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 14751508a7066782b60670cdb22e3b02a085131e
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 215133c58ec8478c59281d256fe8d0947ca14901
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 33f0d7f4de2cf6d6d91efadd40e00a934d525366
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 377a35744f67c0c3739636416c039cc748738336
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 387f369d76017840f415e5681cfb87c085cf49fe
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 4dc73519659769f92994826a342e064db40e492e
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 5df64b8098d030ad81439e2c7653df9dcf6bc407
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 6729fae51be356e274086035096e64643da69ecb
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 6bae0c5c9982442bca8179a9a5c1d44303179374
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 80ebb23ed4ab0e89f781c403e1794d21d4b0697f
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 880b4e745bedcedd0673cc2973d753b9e3129405
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 8fb3bd725a4eb80c2fd2a34f887b49284127ad12
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 aff3a08f17e2977bfc160bb498a8049129d68224
+-rw-rw-r-- 1 ptolou ptolou 4096 May 29 20:03 b8d7fac544618a21ed155a729dc08b28b8f1e201
+
+rootdir/.metadata:
+total 48
+drwx------ 2 ptolou ptolou 4096 May 29 20:03 .
+drwxrwxr-x 4 ptolou ptolou 4096 May 29 20:03 ..
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test10.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test12.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test13.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test1.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test2.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test3.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test4.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test5.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test7.txt
+-rw-rw-r-- 1 ptolou ptolou  200 May 29 20:03 test8.txt
+
+Test test4.sh finished

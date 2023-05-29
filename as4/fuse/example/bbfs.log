@@ -1,0 +1,2714 @@
+
+bb_init()
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/"
+    Creating Blocks directory returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata"
+    Creating Metadata directory returned 0
+Init the array    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.load", fpath = "/home/ptolou/as4/fuse/example/rootdir/.load"
+    conn:
+    proto_major = 7
+    proto_minor = 31
+    async_read = 1
+    max_write = 131072
+    max_readahead = 131072
+    capable = 00000ffb
+    want = 00000010
+    max_background = 0
+    congestion_threshold = 0
+    context:
+    fuse = edff7760
+    uid = 0
+    gid = 0
+    pid = 0
+    private_data = edff62a0
+    logfile = edff72d0
+    rootdir = /home/ptolou/as4/fuse/example/rootdir
+    umask = 00000
+
+bb_getattr(path="/test1.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test1.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test1.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test1.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test1.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test1.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test1.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test1.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test1.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test1.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test1.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test1.txt", fi=0xe164acf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test1.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test1.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test1.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test1.txt", buf=0xe164c060, size=4096, offset=0, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test1.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/5df64b8098d030ad81439e2c7653df9dcf6bc407", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/5df64b8098d030ad81439e2c7653df9dcf6bc407"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test1.txt", buf=0xe0e29060, size=4096, offset=4096, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test1.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test1.txt", buf=0xe164c060, size=4096, offset=8192, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test1.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test1.txt", buf=0xe0e29060, size=4096, offset=12288, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test1.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/8fb3bd725a4eb80c2fd2a34f887b49284127ad12", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/8fb3bd725a4eb80c2fd2a34f887b49284127ad12"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test1.txt", buf=0xe164c060, size=4094, offset=16384, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test1.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/8fb3bd725a4eb80c2fd2a34f887b49284127ad12", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/8fb3bd725a4eb80c2fd2a34f887b49284127ad12"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test1.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0xaff51ed35c829ba7
+
+bb_release(path="/test1.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/test2.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test2.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test2.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test2.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test2.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test2.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test2.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test2.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test2.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test2.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test2.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test2.txt", fi=0xe0e27cf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test2.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test2.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test2.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test2.txt", buf=0xe0e29060, size=4096, offset=0, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test2.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/387f369d76017840f415e5681cfb87c085cf49fe", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/387f369d76017840f415e5681cfb87c085cf49fe"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test2.txt", buf=0xe164c060, size=4096, offset=4096, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test2.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test2.txt", buf=0xe0e29060, size=4096, offset=8192, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test2.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test2.txt", buf=0xe164c060, size=4096, offset=12288, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test2.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test2.txt", buf=0xe0e29060, size=4094, offset=16384, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test2.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/14751508a7066782b60670cdb22e3b02a085131e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/14751508a7066782b60670cdb22e3b02a085131e"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test2.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0eb81a6e454ef0f3
+
+bb_release(path="/test2.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/test3.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test3.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test3.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test3.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test3.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test3.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test3.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test3.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test3.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test3.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test3.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test3.txt", fi=0xe164acf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test3.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test3.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test3.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test3.txt", buf=0xe164c060, size=4096, offset=0, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test3.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test3.txt", buf=0xe0e29060, size=4096, offset=4096, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test3.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test3.txt", buf=0xe164c060, size=4096, offset=8192, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test3.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/80ebb23ed4ab0e89f781c403e1794d21d4b0697f", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/80ebb23ed4ab0e89f781c403e1794d21d4b0697f"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test3.txt", buf=0xe0e29060, size=4096, offset=12288, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test3.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test3.txt", buf=0xe164c060, size=4094, offset=16384, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test3.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/4dc73519659769f92994826a342e064db40e492e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/4dc73519659769f92994826a342e064db40e492e"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test3.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x327bf430ac708fae
+
+bb_release(path="/test3.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/test4.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test4.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test4.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test4.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test4.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test4.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test4.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test4.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test4.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test4.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test4.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test4.txt", fi=0xe0e27cf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test4.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test4.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test4.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test4.txt", buf=0xe0e29060, size=4096, offset=0, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test4.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test4.txt", buf=0xe164c060, size=4096, offset=4096, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test4.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test4.txt", buf=0xe0e29060, size=4096, offset=8192, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test4.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/377a35744f67c0c3739636416c039cc748738336", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/377a35744f67c0c3739636416c039cc748738336"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test4.txt", buf=0xe164c060, size=4096, offset=12288, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test4.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test4.txt", buf=0xe0e29060, size=4094, offset=16384, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test4.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test4.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x14be48b8176f43f9
+
+bb_release(path="/test4.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/test5.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test5.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test5.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test5.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test5.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test5.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test5.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test5.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test5.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test5.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test5.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test5.txt", fi=0xe164acf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test5.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test5.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test5.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test5.txt", buf=0xe164c060, size=4096, offset=0, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test5.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test5.txt", buf=0xe0e29060, size=4096, offset=4096, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test5.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test5.txt", buf=0xe164c060, size=4096, offset=8192, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test5.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/8fb3bd725a4eb80c2fd2a34f887b49284127ad12", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/8fb3bd725a4eb80c2fd2a34f887b49284127ad12"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test5.txt", buf=0xe0e29060, size=4096, offset=12288, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test5.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/387f369d76017840f415e5681cfb87c085cf49fe", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/387f369d76017840f415e5681cfb87c085cf49fe"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test5.txt", buf=0xe164c060, size=4094, offset=16384, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test5.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test5.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x14be48b8176f43f9
+
+bb_release(path="/test5.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/test6.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test6.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test6.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test6.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test6.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test6.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test6.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test6.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test6.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test6.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test6.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test6.txt", fi=0xe0e27cf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test6.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test6.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test6.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test6.txt", buf=0xe0e29060, size=4096, offset=0, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test6.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/14751508a7066782b60670cdb22e3b02a085131e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/14751508a7066782b60670cdb22e3b02a085131e"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test6.txt", buf=0xe164c060, size=4096, offset=4096, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test6.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test6.txt", buf=0xe0e29060, size=4096, offset=8192, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test6.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test6.txt", buf=0xe164c060, size=4096, offset=12288, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test6.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/215133c58ec8478c59281d256fe8d0947ca14901", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/215133c58ec8478c59281d256fe8d0947ca14901"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test6.txt", buf=0xe0e29060, size=4094, offset=16384, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test6.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test6.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x65a8ad72d2ce05dc
+
+bb_release(path="/test6.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/test7.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test7.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test7.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test7.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test7.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test7.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test7.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test7.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test7.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test7.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test7.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test7.txt", fi=0xe164acf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test7.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test7.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test7.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test7.txt", buf=0xe164c060, size=4096, offset=0, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test7.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/4dc73519659769f92994826a342e064db40e492e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/4dc73519659769f92994826a342e064db40e492e"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test7.txt", buf=0xe0e29060, size=4096, offset=4096, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test7.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test7.txt", buf=0xe164c060, size=4096, offset=8192, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test7.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test7.txt", buf=0xe0e29060, size=4096, offset=12288, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test7.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/215133c58ec8478c59281d256fe8d0947ca14901", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/215133c58ec8478c59281d256fe8d0947ca14901"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test7.txt", buf=0xe164c060, size=4094, offset=16384, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test7.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test7.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x7cf4d90354675918
+
+bb_release(path="/test7.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/test8.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test8.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test8.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test8.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test8.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test8.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test8.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test8.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test8.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test8.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test8.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test8.txt", fi=0xe0e27cf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test8.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test8.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test8.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test8.txt", buf=0xe0e29060, size=4096, offset=0, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test8.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test8.txt", buf=0xe164c060, size=4096, offset=4096, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test8.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test8.txt", buf=0xe0e29060, size=4096, offset=8192, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test8.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/14751508a7066782b60670cdb22e3b02a085131e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/14751508a7066782b60670cdb22e3b02a085131e"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test8.txt", buf=0xe164c060, size=4096, offset=12288, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test8.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test8.txt", buf=0xe0e29060, size=4094, offset=16384, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test8.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/14751508a7066782b60670cdb22e3b02a085131e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/14751508a7066782b60670cdb22e3b02a085131e"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test8.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0xd803d641e88d3622
+
+bb_release(path="/test8.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/test9.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test9.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test9.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test9.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test9.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test9.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test9.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test9.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test9.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test9.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test9.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test9.txt", fi=0xe164acf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test9.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test9.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test9.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test9.txt", buf=0xe164c060, size=4096, offset=0, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test9.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test9.txt", buf=0xe0e29060, size=4096, offset=4096, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test9.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test9.txt", buf=0xe164c060, size=4096, offset=8192, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test9.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test9.txt", buf=0xe0e29060, size=4096, offset=12288, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test9.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/377a35744f67c0c3739636416c039cc748738336", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/377a35744f67c0c3739636416c039cc748738336"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test9.txt", buf=0xe164c060, size=4094, offset=16384, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test9.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test9.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0xc9a1c45ac0c1a21a
+
+bb_release(path="/test9.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/test10.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test10.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test10.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test10.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test10.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test10.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test10.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test10.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test10.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test10.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test10.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test10.txt", fi=0xe0e27cf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test10.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test10.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test10.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test10.txt", buf=0xe0e29060, size=4096, offset=0, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test10.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6729fae51be356e274086035096e64643da69ecb", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6729fae51be356e274086035096e64643da69ecb"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test10.txt", buf=0xe164c060, size=4096, offset=4096, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test10.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/377a35744f67c0c3739636416c039cc748738336", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/377a35744f67c0c3739636416c039cc748738336"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test10.txt", buf=0xe0e29060, size=4096, offset=8192, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test10.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test10.txt", buf=0xe164c060, size=4096, offset=12288, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test10.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test10.txt", buf=0xe0e29060, size=4094, offset=16384, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test10.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test10.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x2819962defdc6e9b
+
+bb_release(path="/test10.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/test11.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test11.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test11.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test11.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test11.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test11.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test11.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test11.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test11.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test11.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test11.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test11.txt", fi=0xe164acf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test11.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test11.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test11.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test11.txt", buf=0xe164c060, size=4096, offset=0, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test11.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/d5ac63c2a164a6283520b18abe994cba5676d549", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/d5ac63c2a164a6283520b18abe994cba5676d549"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test11.txt", buf=0xe0e29060, size=4096, offset=4096, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test11.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6729fae51be356e274086035096e64643da69ecb", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6729fae51be356e274086035096e64643da69ecb"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test11.txt", buf=0xe164c060, size=4096, offset=8192, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test11.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/5df64b8098d030ad81439e2c7653df9dcf6bc407", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/5df64b8098d030ad81439e2c7653df9dcf6bc407"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test11.txt", buf=0xe0e29060, size=4096, offset=12288, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test11.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test11.txt", buf=0xe164c060, size=4094, offset=16384, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test11.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/5df64b8098d030ad81439e2c7653df9dcf6bc407", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/5df64b8098d030ad81439e2c7653df9dcf6bc407"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test11.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x613de0ee64c5b2f0
+
+bb_release(path="/test11.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/test12.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test12.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test12.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test12.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test12.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test12.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test12.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test12.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test12.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test12.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test12.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test12.txt", fi=0xe0e27cf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test12.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test12.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test12.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test12.txt", buf=0xe0e29060, size=4096, offset=0, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test12.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/4dc73519659769f92994826a342e064db40e492e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/4dc73519659769f92994826a342e064db40e492e"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test12.txt", buf=0xe164c060, size=4096, offset=4096, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test12.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/4dc73519659769f92994826a342e064db40e492e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/4dc73519659769f92994826a342e064db40e492e"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test12.txt", buf=0xe0e29060, size=4096, offset=8192, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test12.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/387f369d76017840f415e5681cfb87c085cf49fe", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/387f369d76017840f415e5681cfb87c085cf49fe"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test12.txt", buf=0xe164c060, size=4096, offset=12288, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test12.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/387f369d76017840f415e5681cfb87c085cf49fe", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/387f369d76017840f415e5681cfb87c085cf49fe"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test12.txt", buf=0xe0e29060, size=4094, offset=16384, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test12.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/387f369d76017840f415e5681cfb87c085cf49fe", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/387f369d76017840f415e5681cfb87c085cf49fe"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test12.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x58c7457a9aa00cbc
+
+bb_release(path="/test12.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/test13.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test13.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test13.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test13.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_getattr(path="/test13.txt", statbuf=0xe164ac40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test13.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+retstat is -2
+
+bb_mknod(path="/test13.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test13.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test13.txt", statbuf=0xe0e27c40)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test13.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test13.txt"
+    open meta returned -1
+    ERROR open meta: No such file or directory
+
+bb_open(path"/test13.txt", fi=0xe164acf0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test13.txt"
+    open returned 5
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test13.txt", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test13.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_write(path="/test13.txt", buf=0xe164c060, size=4096, offset=0, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test13.txt"
+    open meta returned 6
+    lseek meta returned 0
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test13.txt", buf=0xe0e29060, size=4096, offset=4096, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test13.txt"
+    open meta returned 6
+    lseek meta returned 40
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test13.txt", buf=0xe164c060, size=4096, offset=8192, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test13.txt"
+    open meta returned 6
+    lseek meta returned 80
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test13.txt", buf=0xe0e29060, size=4096, offset=12288, fi=0xe0e27d50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test13.txt"
+    open meta returned 6
+    lseek meta returned 120
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374"
+    open storage returned 7
+    write storage returned 4096
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_write(path="/test13.txt", buf=0xe164c060, size=4094, offset=16384, fi=0xe164ad50)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test13.txt"
+    open meta returned 6
+    lseek meta returned 160
+    read meta returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/377a35744f67c0c3739636416c039cc748738336", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/377a35744f67c0c3739636416c039cc748738336"
+    open storage returned 7
+    write storage returned 4094
+    close block returned 0
+    write meta returned 40
+    close meta returned 0
+
+bb_flush(path="/test13.txt", fi=0xe0e27cf0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x1e4050cb1781cb9a
+
+bb_release(path="/test13.txt", fi=0xe164acf0)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/", statbuf=0xe0e27c10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/", fpath = "/home/ptolou/as4/fuse/example/rootdir/"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/"
+    open meta returned -1
+    ERROR open meta: Is a directory
+
+bb_getxattr(path = "/", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/", fpath = "/home/ptolou/as4/fuse/example/rootdir/"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/", fpath = "/home/ptolou/as4/fuse/example/rootdir/"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/", name = "system.posix_acl_default", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/", fpath = "/home/ptolou/as4/fuse/example/rootdir/"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_opendir(path="/", fi=0xe0e27c30)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/", fpath = "/home/ptolou/as4/fuse/example/rootdir/"
+    opendir returned 0x0x7fddd40013f0
+    fi:
+    flags = 0x00018800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fddd40013f0
+    lock_owner = 0x0000000000000000
+
+bb_readdir(path="/", buf=0xd4001370, filler=0xe1b6abc0, offset=0, fi=0xe164ac30)
+    readdir returned 0x0x7fddd4001420
+calling filler with name test2.txt
+calling filler with name test11.txt
+calling filler with name test10.txt
+calling filler with name test1.txt
+calling filler with name test4.txt
+calling filler with name test5.txt
+calling filler with name test3.txt
+calling filler with name .
+calling filler with name .blocks
+calling filler with name test8.txt
+calling filler with name test12.txt
+calling filler with name ..
+calling filler with name .metadata
+calling filler with name test13.txt
+calling filler with name test7.txt
+calling filler with name test9.txt
+calling filler with name test6.txt
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7fddd40013f0
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fddd40013f0
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/test2.txt", statbuf=0xe0e27c10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test2.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test2.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/387f369d76017840f415e5681cfb87c085cf49fe", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/387f369d76017840f415e5681cfb87c085cf49fe"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/14751508a7066782b60670cdb22e3b02a085131e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/14751508a7066782b60670cdb22e3b02a085131e"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 404005
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test2.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test2.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test2.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test2.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/test11.txt", statbuf=0xe164ac10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test11.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test11.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/d5ac63c2a164a6283520b18abe994cba5676d549", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/d5ac63c2a164a6283520b18abe994cba5676d549"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6729fae51be356e274086035096e64643da69ecb", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6729fae51be356e274086035096e64643da69ecb"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/5df64b8098d030ad81439e2c7653df9dcf6bc407", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/5df64b8098d030ad81439e2c7653df9dcf6bc407"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/5df64b8098d030ad81439e2c7653df9dcf6bc407", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/5df64b8098d030ad81439e2c7653df9dcf6bc407"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 460725
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test11.txt", name = "security.selinux", value = 0xd4000c30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test11.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test11.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test11.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/test10.txt", statbuf=0xe0e27c10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test10.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test10.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6729fae51be356e274086035096e64643da69ecb", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6729fae51be356e274086035096e64643da69ecb"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/377a35744f67c0c3739636416c039cc748738336", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/377a35744f67c0c3739636416c039cc748738336"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 460720
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test10.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test10.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test10.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test10.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/test1.txt", statbuf=0xe164ac10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test1.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test1.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/5df64b8098d030ad81439e2c7653df9dcf6bc407", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/5df64b8098d030ad81439e2c7653df9dcf6bc407"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/8fb3bd725a4eb80c2fd2a34f887b49284127ad12", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/8fb3bd725a4eb80c2fd2a34f887b49284127ad12"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/8fb3bd725a4eb80c2fd2a34f887b49284127ad12", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/8fb3bd725a4eb80c2fd2a34f887b49284127ad12"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 403905
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test1.txt", name = "security.selinux", value = 0xd4000c30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test1.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test1.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test1.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/test4.txt", statbuf=0xe0e27c10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test4.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test4.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/377a35744f67c0c3739636416c039cc748738336", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/377a35744f67c0c3739636416c039cc748738336"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 460697
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test4.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test4.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test4.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test4.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/test5.txt", statbuf=0xe164ac10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test5.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test5.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/8fb3bd725a4eb80c2fd2a34f887b49284127ad12", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/8fb3bd725a4eb80c2fd2a34f887b49284127ad12"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/387f369d76017840f415e5681cfb87c085cf49fe", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/387f369d76017840f415e5681cfb87c085cf49fe"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 460701
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test5.txt", name = "security.selinux", value = 0xd4000c30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test5.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test5.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test5.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/test3.txt", statbuf=0xe0e27c10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test3.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test3.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/80ebb23ed4ab0e89f781c403e1794d21d4b0697f", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/80ebb23ed4ab0e89f781c403e1794d21d4b0697f"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/4dc73519659769f92994826a342e064db40e492e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/4dc73519659769f92994826a342e064db40e492e"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 424483
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test3.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test3.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test3.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test3.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/test8.txt", statbuf=0xe164ac10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test8.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test8.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/14751508a7066782b60670cdb22e3b02a085131e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/14751508a7066782b60670cdb22e3b02a085131e"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/14751508a7066782b60670cdb22e3b02a085131e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/14751508a7066782b60670cdb22e3b02a085131e"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 460716
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test8.txt", name = "security.selinux", value = 0xd4000c30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test8.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test8.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test8.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/test12.txt", statbuf=0xe0e27c10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test12.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test12.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/4dc73519659769f92994826a342e064db40e492e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/4dc73519659769f92994826a342e064db40e492e"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/4dc73519659769f92994826a342e064db40e492e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/4dc73519659769f92994826a342e064db40e492e"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/387f369d76017840f415e5681cfb87c085cf49fe", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/387f369d76017840f415e5681cfb87c085cf49fe"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/387f369d76017840f415e5681cfb87c085cf49fe", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/387f369d76017840f415e5681cfb87c085cf49fe"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/387f369d76017840f415e5681cfb87c085cf49fe", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/387f369d76017840f415e5681cfb87c085cf49fe"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 460728
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test12.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test12.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test12.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test12.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/test13.txt", statbuf=0xe164ac10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test13.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test13.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/880b4e745bedcedd0673cc2973d753b9e3129405"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/377a35744f67c0c3739636416c039cc748738336", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/377a35744f67c0c3739636416c039cc748738336"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 460730
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test13.txt", name = "security.selinux", value = 0xd4000c30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test13.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test13.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test13.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/test7.txt", statbuf=0xe0e27c10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test7.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test7.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/4dc73519659769f92994826a342e064db40e492e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/4dc73519659769f92994826a342e064db40e492e"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/215133c58ec8478c59281d256fe8d0947ca14901", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/215133c58ec8478c59281d256fe8d0947ca14901"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 460711
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test7.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test7.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test7.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test7.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/test9.txt", statbuf=0xe164ac10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test9.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test9.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/33f0d7f4de2cf6d6d91efadd40e00a934d525366"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/aff3a08f17e2977bfc160bb498a8049129d68224"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/377a35744f67c0c3739636416c039cc748738336", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/377a35744f67c0c3739636416c039cc748738336"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6bae0c5c9982442bca8179a9a5c1d44303179374"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 460718
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test9.txt", name = "security.selinux", value = 0xd4000c30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test9.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test9.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test9.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/test6.txt", statbuf=0xe0e27c10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test6.txt"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test6.txt"
+    open meta returned 6
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/14751508a7066782b60670cdb22e3b02a085131e", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/14751508a7066782b60670cdb22e3b02a085131e"
+    lstat on blocks returned 0
+Statbuff Size: 4096
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2"
+    lstat on blocks returned 0
+Statbuff Size: 8192
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/b8d7fac544618a21ed155a729dc08b28b8f1e201"
+    lstat on blocks returned 0
+Statbuff Size: 12288
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/215133c58ec8478c59281d256fe8d0947ca14901", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/215133c58ec8478c59281d256fe8d0947ca14901"
+    lstat on blocks returned 0
+Statbuff Size: 16384
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1"
+    lstat on blocks returned 0
+Statbuff Size: 20480
+    read meta hash returned 0
+    close returned 0
+    si:
+    st_dev = 64768
+    st_ino = 460706
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 20480
+    st_blksize = 4096
+    st_blocks = 40
+    st_atime = 0x64750511
+    st_mtime = 0x64750511
+    st_ctime = 0x64750511
+
+bb_getxattr(path = "/test6.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test6.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test6.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test6.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_releasedir(path="/", fi=0xe0e27c40)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7fddd40013f0
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fddd40013f0
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0xe164ac10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/", fpath = "/home/ptolou/as4/fuse/example/rootdir/"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/"
+    open meta returned -1
+    ERROR open meta: Is a directory
+
+bb_access(path="/", mask=01)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/", fpath = "/home/ptolou/as4/fuse/example/rootdir/"
+
+bb_access(path="/test6.txt", mask=02)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test6.txt"
+bb_unlink(path="/test6.txt")
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test6.txt"
+    open meta returned 5
+    read meta hash returned 40
+    read meta hash returned 40
+    read meta hash returned 40
+    read meta hash returned 40
+    read meta hash returned 40
+    read meta hash returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test6.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test6.txt"
+    unlink returned 0
+    unlink returned 0
+
+bb_access(path="/test9.txt", mask=02)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test9.txt"
+bb_unlink(path="/test9.txt")
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test9.txt"
+    open meta returned 5
+    read meta hash returned 40
+    read meta hash returned 40
+    read meta hash returned 40
+    read meta hash returned 40
+    read meta hash returned 40
+    read meta hash returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test9.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test9.txt"
+    unlink returned 0
+    unlink returned 0
+
+bb_access(path="/test11.txt", mask=02)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test11.txt"
+bb_unlink(path="/test11.txt")
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/test11.txt"
+    open meta returned 5
+    read meta hash returned 40
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.blocks/d5ac63c2a164a6283520b18abe994cba5676d549", fpath = "/home/ptolou/as4/fuse/example/rootdir/.blocks/d5ac63c2a164a6283520b18abe994cba5676d549"
+    unlink returned 0
+    read meta hash returned 40
+    read meta hash returned 40
+    read meta hash returned 40
+    read meta hash returned 40
+    read meta hash returned 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test11.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test11.txt"
+    unlink returned 0
+    unlink returned 0
+
+bb_getattr(path="/", statbuf=0xe164ac10)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/", fpath = "/home/ptolou/as4/fuse/example/rootdir/"
+    lstat returned 0
+retstat is 0
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.metadata/", fpath = "/home/ptolou/as4/fuse/example/rootdir/.metadata/"
+    open meta returned -1
+    ERROR open meta: Is a directory
+
+bb_getxattr(path = "/", name = "security.selinux", value = 0xd4000c30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/", fpath = "/home/ptolou/as4/fuse/example/rootdir/"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/", fpath = "/home/ptolou/as4/fuse/example/rootdir/"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/", name = "system.posix_acl_default", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/", fpath = "/home/ptolou/as4/fuse/example/rootdir/"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_opendir(path="/", fi=0xe164ac30)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/", fpath = "/home/ptolou/as4/fuse/example/rootdir/"
+    opendir returned 0x0x7fdddc0030f0
+    fi:
+    flags = 0x00018800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fdddc0030f0
+    lock_owner = 0x0000000000000000
+
+bb_readdir(path="/", buf=0xdc003070, filler=0xe1b6abc0, offset=0, fi=0xe0e27c30)
+    readdir returned 0x0x7fdddc003120
+calling filler with name test2.txt
+calling filler with name test10.txt
+calling filler with name test1.txt
+calling filler with name test4.txt
+calling filler with name test5.txt
+calling filler with name test3.txt
+calling filler with name .
+calling filler with name .blocks
+calling filler with name test8.txt
+calling filler with name test12.txt
+calling filler with name ..
+calling filler with name .metadata
+calling filler with name test13.txt
+calling filler with name test7.txt
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7fdddc0030f0
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fdddc0030f0
+    lock_owner = 0x0000000000000000
+
+bb_getxattr(path = "/test2.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test2.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test2.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test2.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test2.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test10.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test10.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test10.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test10.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test10.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test1.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test1.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test1.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test1.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test1.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test4.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test4.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test4.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test4.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test4.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test5.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test5.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test5.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test5.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test5.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test3.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test3.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test3.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test3.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test3.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test8.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test8.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test8.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test8.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test8.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test12.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test12.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test12.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test12.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test12.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test13.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test13.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test13.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test13.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test13.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test7.txt", name = "security.selinux", value = 0xdc001e30, size = 255)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test7.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/test7.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/test7.txt", fpath = "/home/ptolou/as4/fuse/example/rootdir/test7.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_releasedir(path="/", fi=0xe0e27c40)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7fdddc0030f0
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fdddc0030f0
+    lock_owner = 0x0000000000000000
+
+bb_destroy(userdata=0xedff62a0)
+Save the array    bb_fullpath:  rootdir = "/home/ptolou/as4/fuse/example/rootdir", path = "/.load", fpath = "/home/ptolou/as4/fuse/example/rootdir/.load"
+save file: /home/ptolou/as4/fuse/example/rootdir/.load
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
+    write returned 43
