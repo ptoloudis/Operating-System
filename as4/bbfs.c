@@ -685,35 +685,20 @@ int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
 // As  with read(), the documentation above is inconsistent with the
 // documentation for the write() system call.
 int bb_write(const char *path, const char *buf, size_t size, off_t offset, struct fuse_file_info *fi){
-    int retstat = 0, i = 0;
+    int retstat = 0, i = 0, found = 0, length, x;
     unsigned char hash[SHA_DIGEST_LENGTH] = "";
     unsigned char old_hash[SHA_DIGEST_LENGTH * 2 + 1] = "";
     char fpath[PATH_MAX];
-    char storage_file[PATH_MAX] = "";
     char meta_path[PATH_MAX] = "";
+    char block_path[PATH_MAX] = "";
+    char block_full_path[PATH_MAX] = ""; 
     char meta_full_path[PATH_MAX] = "";
-    char old_path[PATH_MAX] = "";
-    char new_path[PATH_MAX] = "";
-    int storage_fd;
-    int meta_fd;
+    int block_fd, meta_fd;
     char raw_name[SHA_DIGEST_LENGTH * 2];
-    struct dirent *file;
-    DIR *storage_directory_ptr;
-    char *hashtoken;
-    char *refcounttoken;
-    int new_ref_count = 0;
-    char new_ref_count_str[12] = {};
-    int found = 0;
-    int bytes_written = BLOCKSIZE;
-
-    unsigned char search_hash[SHA_DIGEST_LENGTH * 2 + 1] = "";
-    char overwrite_path[PATH_MAX] = "";
-    char old_overwrite_path[PATH_MAX] = "";
-    char meta_path_refactored[PATH_MAX] = "";
+    char old_block_path[PATH_MAX] = "";
+    char old_block_full_path[PATH_MAX] = "";
     bool endfile = false;
-    int length;
-    struct node* temp;
-    int x;
+    struct node* find_block;
     
     //Log Write    
     log_msg("\nbb_write(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n", path, buf, size, offset, fi);
@@ -732,7 +717,7 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
 
     log_syscall("lseek meta", lseek(meta_fd, (offset / BLOCKSIZE) * (SHA_DIGEST_LENGTH * 2), SEEK_SET), 0); 
 
-    while( size/BLOCKSIZE != i || !endfile){
+    while( size/BLOCKSIZE != i ){
         // read meta file
         length = log_syscall("read meta", read(meta_fd, (void *) old_hash, SHA_DIGEST_LENGTH * 2), 0);
         if (length == 0)
@@ -748,42 +733,42 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         }
 
         //Add to "rootdir/.blocks/{hash}"
-        strcpy(storage_file, BLOCKS);
-        strcat(storage_file, raw_name);
-        bb_fullpath(fpath, storage_file);
+        strcpy(block_path, BLOCKS);
+        strcat(block_path, raw_name);
+        bb_fullpath(block_full_path, block_path);
 
         // Create Storage File
-        storage_fd = log_syscall("open storage", open(fpath, O_CREAT | O_RDWR, 0666), 0);
-        if(storage_fd < 0){
+        block_fd = log_syscall("open storage", open(block_full_path, O_CREAT | O_RDWR, 0666), 0);
+        if(block_fd < 0){
             //File Al
             return 0; 
         }
 
         // Write to Storage File
-        log_syscall("write storage", write(storage_fd, (void*) buf + (i * BLOCKSIZE), BLOCKSIZE), 0);
+        log_syscall("write storage", write(block_fd, (void*) buf + (i * BLOCKSIZE), BLOCKSIZE), 0);
 
         // Close Storage File
-        log_syscall("close block", close(storage_fd), 0);
+        log_syscall("close block", close(block_fd), 0);
 
         if( strcmp(old_hash, raw_name) != 0){
-            temp = myfind(old_hash);
-            x = set_value(temp, -1);
-            if(x == 0){
+            find_block = myfind(old_hash);
+            found = set_value(find_block, -1);
+            if(found == 0){
                 mydelete(old_hash);
-                strcpy(overwrite_path, BLOCKS);
-                strcat(overwrite_path, old_hash);
-                bb_fullpath(old_overwrite_path, overwrite_path);
-                log_syscall("unlink", unlink(old_overwrite_path), 0);
+                strcpy(old_block_path, BLOCKS);
+                strcat(old_block_path, old_hash);
+                bb_fullpath(old_block_full_path, old_block_path);
+                log_syscall("unlink", unlink(old_block_full_path), 0);
             }
-            temp = myfind(raw_name);
-            if(temp == NULL){
+            find_block = myfind(raw_name);
+            if(find_block == NULL){
                 myinsert(raw_name);
             }else{
-                set_value(temp, 1);
+                set_value(find_block, 1);
             }
         } else {
-            temp = myfind(raw_name);
-            set_value(temp, 1);
+            find_block = myfind(raw_name);
+            set_value(find_block, 1);
         }        
 
         // Write to Meta File
@@ -800,29 +785,28 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         }
 
         //Add to "rootdir/.blocks/{hash}"
-        strcpy(storage_file, BLOCKS);
-        strcat(storage_file, raw_name);
-        bb_fullpath(fpath, storage_file);
+        strcpy(block_path, BLOCKS);
+        strcat(block_path, raw_name);
+        bb_fullpath(block_full_path, block_path);
 
         // Create Storage File
-        storage_fd = log_syscall("open storage", open(fpath, O_CREAT | O_RDWR, 0666), 0);
-        if(storage_fd < 0){
+        block_fd = log_syscall("open storage", open(block_full_path, O_CREAT | O_RDWR, 0666), 0);
+        if(block_fd < 0){
             //File Al
             return 0; 
         }
 
         // Write to Storage File
-        log_syscall("write storage", write(storage_fd, (void*) buf + (i * BLOCKSIZE), BLOCKSIZE), 0);
+        log_syscall("write storage", write(block_fd, (void*) buf + (i * BLOCKSIZE), BLOCKSIZE), 0);
 
         // Close Storage File
-        log_syscall("close block", close(storage_fd), 0);
+        log_syscall("close block", close(block_fd), 0);
 
-        
-        if (myfind(raw_name) == NULL)
+        find_block = myfind(raw_name);
+        if (find_block == NULL)
             myinsert(raw_name);
         else{        
-            temp = myfind(raw_name);
-            set_value(temp, 1);
+            set_value(find_block, 1);
         }        
 
         // Write to Meta File
@@ -837,30 +821,30 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         }
 
         //Add to "rootdir/.blocks/{hash}"
-        strcpy(storage_file, BLOCKS);
-        strcat(storage_file, raw_name);
-        bb_fullpath(fpath, storage_file);
+        strcpy(block_path, BLOCKS);
+        strcat(block_path, raw_name);
+        bb_fullpath(block_full_path, block_path);
 
         // Create Storage File
-        storage_fd = log_syscall("open storage", open(fpath, O_CREAT | O_RDWR, 0666), 0);
-        if(storage_fd < 0){
+        block_fd = log_syscall("open storage", open(block_full_path, O_CREAT | O_RDWR, 0666), 0);
+        if(block_fd < 0){
             //File Al
             return 0; 
         }
 
         // Write to Storage File
-        log_syscall("write storage", write(storage_fd, (void*) buf + (i * BLOCKSIZE), size), 0);
+        log_syscall("write storage", write(block_fd, (void*) buf + (i * BLOCKSIZE), size), 0);
 
         // Close Storage File
-        log_syscall("close block", close(storage_fd), 0);
+        log_syscall("close block", close(block_fd), 0);
 
         
-        if (myfind(raw_name) == NULL)
+        find_block = myfind(raw_name);
+        if (find_block == NULL)
             myinsert(raw_name);
         else{        
-            temp = myfind(raw_name);
-            set_value(temp, 1);
-        }        
+            set_value(find_block, 1);
+        }              
 
         // Write to Meta File
         log_syscall("write meta", write(meta_fd, (void *) raw_name, SHA_DIGEST_LENGTH*2), 0);
