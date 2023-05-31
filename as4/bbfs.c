@@ -36,8 +36,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include <openssl/sha.h>
-#include <stdbool.h>
+#include <openssl/sha.h>    // The library for SHA1
+#include <stdbool.h>        // The library for boolean
 
 #ifdef HAVE_SYS_XATTR_H
 #include <sys/xattr.h>
@@ -45,48 +45,85 @@
 
 #include "log.h"
 
-#define METADATA "/.metadata"
-#define BLOCKS "/.blocks/"
-#define LOAD "/.load"
-#define BLOCKSIZE 4096
+static void bb_fullpath(char fpath[PATH_MAX], const char *path); // The function for the full path
+
+// The data structure for the file system
+
+#define METADATA "/.metadata"   // The folder for the metadata
+#define BLOCKS "/.blocks/"      // The folder for the blocks
+#define LOAD "/.load"           // The file for the load
+#define BLOCKSIZE 4096          // The size of the block
 
 // File descriptors for the our folders
 int blocks_fd;
 int metadata_fd;
-struct node* root;
-int size_of_root;
+struct node* root;              // The root of the tree
+int size_of_root;               // The size of the root
 
-/************************** OUR SAVE FUCTION ****************************************/
+/************************** OUR FUCTIONS ****************************************/
 
 struct node{
     char *hash_value;         //The hash value of the file by SHA1
     int exist;                //The number of times the block exists
 };
 
-void myfinsert(char* hash_value, int exist) {
-    // struct node* new_node = mycreate(hash_value);
+///  The function for the unvolatilize the data
+void myfinsert(char* hash_value, int exist) // Insert the data from the file
+{
     struct node new_node;
-    new_node.hash_value = (char*) malloc(strlen(hash_value) + 1);
+    new_node.hash_value = (char*) malloc(strlen(hash_value) + 1);   // Allocate the memory for the hash value
     strcpy(new_node.hash_value, hash_value);
-    new_node.exist = exist;
-    if(root == NULL){
+    new_node.exist = exist; 
+    if(root == NULL){   // If the root is empty
         root = (struct node*) malloc(sizeof(struct node));
         root[size_of_root] = new_node;
         size_of_root++;
         return;
     }
+    // If the root is not empty
     root = (struct node*) realloc(root, (size_of_root + 1) * sizeof(struct node));
     root[size_of_root] = new_node;
     size_of_root++;
 }
 
-void swap(struct node* a, struct node* b) {
+void myload()   // Load the data from the file
+{ 
+    char path[PATH_MAX];
+    bb_fullpath(path, LOAD);
+    FILE* fd = fopen(path, "r");
+    log_msg("load file: %s\n", path);
+    char hash[SHA_DIGEST_LENGTH * 2 + 1] = "";
+    int exist;
+    while(log_syscall("read", fscanf(fd,"%s %d", hash, &exist), 0) != 0){
+        hash[SHA_DIGEST_LENGTH * 2] = '\0';
+        myfinsert(hash, exist);
+    }
+    fclose(fd);
+}
+
+void mysave()   // Save the data to the file
+{
+    char path[PATH_MAX];
+    bb_fullpath(path, LOAD);
+    FILE* fd = fopen(path, "w");
+    log_msg("save file: %s\n", path);
+    for(int i = 0; i < size_of_root; i++){
+        log_syscall("write", fprintf(fd, "%s %d\n", root[i].hash_value, root[i].exist), 0);
+    }
+    fclose(fd);
+}
+
+/// The function for the quicksort
+
+void swap(struct node* a, struct node* b) // Swap the data
+{
     struct node temp = *a;
     *a = *b;
     *b = temp;
 }
 
-int partition(struct node arr[], int low, int high) {
+int partition(struct node arr[], int low, int high) // Partition the data from the quicksort
+{
     char* pivot = arr[high].hash_value;
     int i = low - 1;
     for (int j = low; j <= high - 1; j++) {
@@ -99,7 +136,8 @@ int partition(struct node arr[], int low, int high) {
     return i + 1;
 }
 
-void quicksort(struct node arr[], int low, int high) {
+void quicksort(struct node arr[], int low, int high) // Sort the data from the quicksort
+{
     if (low < high) {
         int pi = partition(arr, low, high);
         quicksort(arr, low, pi - 1);
@@ -107,38 +145,35 @@ void quicksort(struct node arr[], int low, int high) {
     }
 }
 
-// struct node* mycreate(char* hash_value) {
-//     struct node* new_node = (struct node*) malloc(sizeof(struct node));
-//     new_node->hash_value = (char*) malloc(strlen(hash_value) + 1);
-//     strcpy(new_node->hash_value, hash_value);
-//     new_node->exist = 1;
-//     return new_node;
-// }
+/// The helper function for the binary search
 
-int set_value(struct node* arr, int val){
+int set_value(struct node* arr, int val) // Set the value for the data in the node
+{
     arr->exist += val;
     return arr->exist;
 }
 
-void myinsert(char* hash_value) {
-    // struct node* new_node = mycreate(hash_value);
+void myinsert(char* hash_value) // Insert the data to the node
+{
     struct node new_node;
-    new_node.hash_value = (char*) malloc(strlen(hash_value) + 1);
+    new_node.hash_value = (char*) malloc(strlen(hash_value) + 1); // Allocate the memory for the hash value
     strcpy(new_node.hash_value, hash_value);
-    new_node.exist = 1;
-    if(root == NULL){
+    new_node.exist = 1; // Set the value for the data to 1
+    if(root == NULL){ // if the root is empty
         root = (struct node*) malloc(sizeof(struct node));
         root[size_of_root] = new_node;
         size_of_root++;
         return;
     }
+    // If the root is not empty
     root = (struct node*) realloc(root, (size_of_root + 1) * sizeof(struct node));
     root[size_of_root] = new_node;
     size_of_root++;
-    quicksort(root, 0, size_of_root - 1);
+    quicksort(root, 0, size_of_root - 1); // Sort the data
 }
 
-struct node* myfind(char* hash_value) {
+struct node* myfind(char* hash_value)   // Find the data in the node return the node or NULL
+{
     int left = 0;
     int right = size_of_root - 1;
     while (left <= right) {
@@ -155,7 +190,8 @@ struct node* myfind(char* hash_value) {
     return NULL;
 }
 
-void mydelete(char* hash_value) {
+void mydelete(char* hash_value)     // Delete the data in the node
+{
     int left = 0;
     int right = size_of_root - 1;
     while (left <= right) {
@@ -181,12 +217,14 @@ void mydelete(char* hash_value) {
     root = (struct node*) realloc(root, (size_of_root) * sizeof(struct node));
 }
 
-void myinit() {
+void myinit() // Initialize the ours data structure
+{
     root = NULL;
     size_of_root = 0;
 }
 
-void mydestroy() {
+void mydestroy() // Destroy the ours data structure
+{
     for (int i = 0; i < size_of_root; i++) {
         free(root[i].hash_value);
     }
@@ -210,33 +248,6 @@ static void bb_fullpath(char fpath[PATH_MAX], const char *path)
     log_msg("    bb_fullpath:  rootdir = \"%s\", path = \"%s\", fpath = \"%s\"\n",
 	    BB_DATA->rootdir, path, fpath);
 }
-
-///  The fuse operations are defined in the fuse_operations structure.
-void myload(){
-    char path[PATH_MAX];
-    bb_fullpath(path, LOAD);
-    FILE* fd = fopen(path, "r");
-    log_msg("load file: %s\n", path);
-    char hash[SHA_DIGEST_LENGTH * 2 + 1] = "";
-    int exist;
-    while(log_syscall("read", fscanf(fd,"%s %d", hash, &exist), 0) != 0){
-        hash[SHA_DIGEST_LENGTH * 2] = '\0';
-        myfinsert(hash, exist);
-    }
-    fclose(fd);
-}
-
-void mysave(){
-    char path[PATH_MAX];
-    bb_fullpath(path, LOAD);
-    FILE* fd = fopen(path, "w");
-    log_msg("save file: %s\n", path);
-    for(int i = 0; i < size_of_root; i++){
-        log_syscall("write", fprintf(fd, "%s %d\n", root[i].hash_value, root[i].exist), 0);
-    }
-    fclose(fd);
-}
-
 
 ///////////////////////////////////////////////////////////
 //
@@ -274,7 +285,7 @@ int bb_getattr(const char *path, struct stat *statbuf)
         return retstat;
     }
 
-    //Add to "rootdir/.meta/{path}"
+    //Add to "rootdir/.metadata/{path}"
     strcpy(meta_path, METADATA);
     strcat(meta_path, path);
     bb_fullpath(meta_full_path, meta_path);
@@ -289,11 +300,13 @@ int bb_getattr(const char *path, struct stat *statbuf)
     while(log_syscall("read meta hash", read(meta_fd, (void *) block_hash_value, SHA_DIGEST_LENGTH * 2), 0) != 0){
         block_hash_value[SHA_DIGEST_LENGTH * 2] = '\0';
 
-        memset(block_path, 0, PATH_MAX);
+        // Add to "rootdir/.blocks/{hash}"
+        memset(block_path, 0, PATH_MAX); 
         strcpy(block_path, BLOCKS);
         strcat(block_path, block_hash_value);
         bb_fullpath(block_full_path, block_path);
 
+        // Read Block and add to statbuf
         retstat = log_syscall("lstat on blocks", lstat(block_full_path, &temp_statbuff), 0);
         statbuf->st_size += temp_statbuff.st_size;
         statbuf->st_blocks += temp_statbuff.st_blocks;
@@ -306,22 +319,6 @@ int bb_getattr(const char *path, struct stat *statbuf)
 
     return retstat;
 }
-
-// int bb_getattr(const char *path, struct stat *statbuf)
-// {
-//     int retstat;
-//     char fpath[PATH_MAX];
-    
-//     log_msg("\nbb_getattr(path=\"%s\", statbuf=0x%08x)\n",
-// 	  path, statbuf);
-//     bb_fullpath(fpath, path);
-
-//     retstat = log_syscall("lstat", lstat(fpath, statbuf), 0);
-    
-//     log_stat(statbuf);
-    
-//     return retstat;
-// }
 
 /** Read the target of a symbolic link
  *
@@ -416,6 +413,7 @@ int bb_unlink(const char *path)
 
     log_msg("bb_unlink(path=\"%s\")\n", path);
     
+    //Add to "rootdir/.metadata/{path}"
     strcpy(meta_path, METADATA);
     strcat(meta_path, path);
     bb_fullpath(meta_full_path, meta_path);
@@ -427,21 +425,31 @@ int bb_unlink(const char *path)
         return BLOCKSIZE; 
     }
 
+    // Read from the meta file and delete the block or decrease the exist value
     while (log_syscall("read meta hash", read(meta_fd, (void *) block_hash_value, SHA_DIGEST_LENGTH * 2), 0) != 0){
         block_hash_value[SHA_DIGEST_LENGTH * 2] = '\0';
         find_block = myfind(block_hash_value);
         found = set_value(find_block, -1);
-        if(found == 0){ 
+        
+        if(found == 0) // If the block have no exist value, then delete the block
+        { 
+            // Delete the block
             mydelete(block_hash_value);
+
+            // Delete the block file in the .blocks folder
+            // At "rootdir/.blocks/{hash}"
+            memset(block_path, 0, PATH_MAX);
             strcpy(block_path, BLOCKS);
             strcat(block_path, block_hash_value);
             bb_fullpath(block_full_path, block_path);
             log_syscall("unlink", unlink(block_full_path), 0);
         }
     } 
+
     close(meta_fd);
     bb_fullpath(tmp_full_path, path);
     log_syscall("unlink", unlink(tmp_full_path), 0);
+
     return log_syscall("unlink", unlink(meta_full_path), 0);
 }
 
@@ -618,7 +626,7 @@ int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
     log_msg("\nbb_read(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n", path, buf, size, offset, fi);
     // no need to get fpath on this one, since I work from fi->fh not the path
 
-    //Add to "rootdir/.meta/{path}"
+    //Add to "rootdir/.metadata/{path}"
     strcpy(meta_path, METADATA);
     strcat(meta_path, path);
     bb_fullpath(meta_full_path, meta_path);
@@ -630,6 +638,7 @@ int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
         return 0; 
     }
 
+    // Lseek to the correct offset
     log_syscall("lseek meta", lseek(meta_fd, (offset / BLOCKSIZE) * (SHA_DIGEST_LENGTH * 2), SEEK_SET), 0);
 
     i = 0;
@@ -638,12 +647,12 @@ int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
         block_hash_value[SHA_DIGEST_LENGTH * 2] = '\0';
             
         //At "rootdir/.blocks/{hash}"
-        // Read Block
         memset(block_path, 0, PATH_MAX);
         strcpy(block_path, BLOCKS);
         strcat(block_path, block_hash_value);
         bb_fullpath(block_full_path, block_path);
-
+        
+        // Read Block
         block_fd = log_syscall("open block for read", open(block_full_path, O_RDWR, 0666), 0);
         log_syscall("read block", read(block_fd, (void*) buf + (i * BLOCKSIZE), BLOCKSIZE), 0);
 
@@ -659,20 +668,6 @@ int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
 
     return size;
 }
-
-/*
-int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
-{
-    int retstat = 0;
-    
-    log_msg("\nbb_read(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
-	    path, buf, size, offset, fi);
-    // no need to get fpath on this one, since I work from fi->fh not the path
-    log_fi(fi);
-
-    return log_syscall("pread", pread(fi->fh, buf, size, offset), 0);
-}
-*/
 
 /** Write data to an open file
  *
@@ -708,10 +703,10 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
     strcat(meta_path, path);
     bb_fullpath(meta_full_path, meta_path);
 
-    if(access(meta_full_path,F_OK) == -1){
+    if(access(meta_full_path,F_OK) == -1) // If the file is not exist, set the endfile to true
+    {
         endfile = true;
     } 
-
 
     // Create Meta File
     meta_fd = log_syscall("open meta", open(meta_full_path, O_CREAT | O_RDWR, 0666), 0);
@@ -722,13 +717,14 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
 
     log_syscall("lseek meta", lseek(meta_fd, (offset / BLOCKSIZE) * (SHA_DIGEST_LENGTH * 2), SEEK_SET), 0); 
 
-    while( size/BLOCKSIZE != i ){
+    while( size/BLOCKSIZE != i ) // Write the data to the block file
+    {
         // read meta file
         length = log_syscall("read meta", read(meta_fd, (void *) old_hash, SHA_DIGEST_LENGTH * 2), 0);
-        if (length == 0)
+        if (length == 0) // If the file is in the end, set the endfile to true
         {
             endfile = true;
-            break;
+            break; 
         }
 
         //Create Hash
@@ -756,21 +752,27 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         log_syscall("close block", close(block_fd), 0);
 
         if( strcmp(old_hash, raw_name) != 0){
+
+            // Desrease the exist value of the old block
             find_block = myfind(old_hash);
             found = set_value(find_block, -1);
-            if(found == 0){
+            if(found == 0) // If the file is not exist, delete the block
+            {
                 mydelete(old_hash);
                 strcpy(old_block_path, BLOCKS);
                 strcat(old_block_path, old_hash);
                 bb_fullpath(old_block_full_path, old_block_path);
                 log_syscall("unlink", unlink(old_block_full_path), 0);
             }
+
+            // Increase or Create the exist value of the new block
             find_block = myfind(raw_name);
             if(find_block == NULL){
                 myinsert(raw_name);
             }else{
                 set_value(find_block, 1);
             }
+
         } else {
             find_block = myfind(raw_name);
             set_value(find_block, 1);
@@ -783,7 +785,8 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         i++;
     }
     
-    while( size/BLOCKSIZE != i && endfile){
+    while( size/BLOCKSIZE != i && endfile)  // Write the data to the block file if the file in the end
+    {
         //Create Hash
         SHA1((unsigned char*) buf + (i * BLOCKSIZE), BLOCKSIZE, hash);
         for (int j=0; j < SHA_DIGEST_LENGTH; j++) {
@@ -808,6 +811,7 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         // Close Storage File
         log_syscall("close block", close(block_fd), 0);
 
+        // Increase or Create the exist value of the new block
         find_block = myfind(raw_name);
         if (find_block == NULL)
             myinsert(raw_name);
@@ -820,7 +824,7 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         i++;
     }
 
-    if( size % BLOCKSIZE != 0 && endfile){
+    if( size >0 && size < BLOCKSIZE || (size % BLOCKSIZE != 0 && endfile)){ // Write the data to the block file if the file in the end and the size is not the multiple of the block size
         SHA1((unsigned char*) buf + (i * BLOCKSIZE), BLOCKSIZE, hash);
         for (int j=0; j < SHA_DIGEST_LENGTH; j++) {
             sprintf((char*)&(raw_name[j*2]), "%02x", hash[j]);
@@ -844,7 +848,7 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         // Close Storage File
         log_syscall("close block", close(block_fd), 0);
 
-        
+        // Increase or Create the exist value of the new block
         find_block = myfind(raw_name);
         if (find_block == NULL)
             myinsert(raw_name);
@@ -862,23 +866,6 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
     
     return size;
 }
-
-
-/*
-int bb_write(const char *path, const char *buf, size_t size, off_t offset,
-	     struct fuse_file_info *fi)
-{
-    int retstat = 0;
-    
-    log_msg("\nbb_write(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
-	    path, buf, size, offset, fi
-	    );
-    // no need to get fpath on this one, since I work from fi->fh not the path
-    log_fi(fi);
-
-    return log_syscall("pwrite", pwrite(fi->fh, buf, size, offset), 0);
-}
-*/
 
 /** Get file system statistics
  *
@@ -1210,7 +1197,7 @@ void *bb_init(struct fuse_conn_info *conn)
 {
     char path[PATH_MAX];
     log_msg("\nbb_init()\n");
-
+    
     //Create a directory to store the blocks
     bb_fullpath(path, BLOCKS);
     blocks_fd = log_syscall("Creating Blocks directory", mkdir(path, S_IRWXU), 0);
@@ -1218,17 +1205,17 @@ void *bb_init(struct fuse_conn_info *conn)
     //Create a directory to store the metadata
     bb_fullpath(path, METADATA);
     metadata_fd = log_syscall("Creating Metadata directory", mkdir(path, S_IRWXU), 0);
-    
-    //Create a directory to store the hash values
+
+    //Init the ours Data Structure
     myinit();
     log_msg("Init the array");
 
     bb_fullpath(path, LOAD);
-    if(access(path, F_OK) != -1)
+    if(access(path, F_OK) != -1) // If the file is exist, load the array
     {
         log_msg("Load the array");
         myload();
-        unlink(path);
+        unlink(path);   // Delete the .load file
     }
 
     //Create a directory to store the hash values
@@ -1251,12 +1238,13 @@ void bb_destroy(void *userdata)
     log_msg("\nbb_destroy(userdata=0x%08x)\n", userdata);
     char path[PATH_MAX];
 
-    if(size_of_root > 0)
+    if(size_of_root > 0) // If the array is not empty, save the array
     {
         log_msg("Save the array");
         mysave();
     }
 
+    // Destroy ours Data Structure
     mydestroy();
 }
 

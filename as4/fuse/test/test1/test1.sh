@@ -4,6 +4,11 @@ echo -e "\n  Test test1.sh"
 
 echo -e "\nMount the file system"
 cd ..
+
+echo -e "\nmake clean"
+make clean
+
+echo -e "\nmake"
 make
 ../src/bbfs rootdir/ mountdir/
 
