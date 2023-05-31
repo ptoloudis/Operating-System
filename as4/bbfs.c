@@ -708,6 +708,11 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
     strcat(meta_path, path);
     bb_fullpath(meta_full_path, meta_path);
 
+    if(access(meta_full_path,F_OK) == -1){
+        endfile = true;
+    } 
+
+
     // Create Meta File
     meta_fd = log_syscall("open meta", open(meta_full_path, O_CREAT | O_RDWR, 0666), 0);
     if(meta_fd < 0){
@@ -772,6 +777,7 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         }        
 
         // Write to Meta File
+        log_syscall("lseek meta", lseek(meta_fd, -(SHA_DIGEST_LENGTH * 2), SEEK_CUR), 0);
         log_syscall("write meta", write(meta_fd, (void *) raw_name, SHA_DIGEST_LENGTH*2), 0);
         memset(old_hash, 0, SHA_DIGEST_LENGTH * 2 + 1);
         i++;
@@ -814,7 +820,7 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         i++;
     }
 
-    if(size >0 && size < BLOCKSIZE){
+    if( size % BLOCKSIZE != 0 && endfile){
         SHA1((unsigned char*) buf + (i * BLOCKSIZE), BLOCKSIZE, hash);
         for (int j=0; j < SHA_DIGEST_LENGTH; j++) {
             sprintf((char*)&(raw_name[j*2]), "%02x", hash[j]);
@@ -833,7 +839,7 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
         }
 
         // Write to Storage File
-        log_syscall("write storage", write(block_fd, (void*) buf + (i * BLOCKSIZE), size), 0);
+        log_syscall("write storage", write(block_fd, (void*) buf + (i * BLOCKSIZE), size % BLOCKSIZE), 0);
 
         // Close Storage File
         log_syscall("close block", close(block_fd), 0);
