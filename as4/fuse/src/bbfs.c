@@ -825,7 +825,7 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset, struc
     }
 
     if( size >0 && size < BLOCKSIZE || (size % BLOCKSIZE != 0 && endfile)){ // Write the data to the block file if the file in the end and the size is not the multiple of the block size
-        SHA1((unsigned char*) buf + (i * BLOCKSIZE), BLOCKSIZE, hash);
+        SHA1((unsigned char*) buf + (i * BLOCKSIZE), size % BLOCKSIZE, hash);
         for (int j=0; j < SHA_DIGEST_LENGTH; j++) {
             sprintf((char*)&(raw_name[j*2]), "%02x", hash[j]);
         }
