@@ -1,0 +1,255 @@
+
+  Test test4.sh
+
+Mount the file system
+
+make clean
+rm -r mountdir rootdir
+
+make
+mkdir -p mountdir
+mkdir -p rootdir
+# echo "bogus file" > rootdir/bogus.txt
+
+  Start the test4.sh
+
+Add the all the files
+
+ls in mountdir
+total 260
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file10.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file11.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file12.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file13.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file1.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file2.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file3.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file4.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file5.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file6.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file7.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file8.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file9.txt
+
+ls in rootdir
+rootdir:
+total 16
+drwxrwxr-x 4 ptolou ptolou 4096 Jun  1 18:42 .
+drwxrwxr-x 8 ptolou ptolou 4096 Jun  1 18:42 ..
+drwx------ 2 ptolou ptolou 4096 Jun  1 18:42 .blocks
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file10.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file11.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file12.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file13.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file1.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file2.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file3.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file4.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file5.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file6.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file7.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file8.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file9.txt
+drwx------ 2 ptolou ptolou 4096 Jun  1 18:42 .metadata
+
+rootdir/.blocks:
+total 128
+drwx------ 2 ptolou ptolou 4096 Jun  1 18:42 .
+drwxrwxr-x 4 ptolou ptolou 4096 Jun  1 18:42 ..
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 1400aa3d035292f02e65f39131f7c9a33b4e4b20
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 14751508a7066782b60670cdb22e3b02a085131e
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 215133c58ec8478c59281d256fe8d0947ca14901
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 25e2bbee278a7ba51973a5dfea7638a4abf45a35
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 33f0d7f4de2cf6d6d91efadd40e00a934d525366
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 377a35744f67c0c3739636416c039cc748738336
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 387f369d76017840f415e5681cfb87c085cf49fe
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 3b73df9bc30bb7a9969fa8f776661c061ee88af6
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 443be50672f32f4e2c660608991101c655002f12
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 4dc73519659769f92994826a342e064db40e492e
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 5df64b8098d030ad81439e2c7653df9dcf6bc407
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 6729fae51be356e274086035096e64643da69ecb
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 67ed7dc935f8f8aad7dd8c54872753e28f4f3c96
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 6bae0c5c9982442bca8179a9a5c1d44303179374
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 7a5ea007e2888884a1869712a37c7a96b9f28019
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 7cf016bc0955598b8f9aec3a21ff609e36560a20
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 80ebb23ed4ab0e89f781c403e1794d21d4b0697f
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 880b4e745bedcedd0673cc2973d753b9e3129405
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 8fb3bd725a4eb80c2fd2a34f887b49284127ad12
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 9dc515bbad41e6de2eb787dbdaae630fc015ba05
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 aff3a08f17e2977bfc160bb498a8049129d68224
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 b1c4cc12967644644e99eedd3d191f0a2258fa32
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 b8d7fac544618a21ed155a729dc08b28b8f1e201
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 bc84ae45045e458648c30e9be6fddf35f7be0ce5
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 d40588f9a38e66cc3d26efb1812cfb7c82ccefab
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 d5ac63c2a164a6283520b18abe994cba5676d549
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 eef74912bf6670e6dfd63f40975e3a3b927afec1
+
+rootdir/.metadata:
+total 60
+drwx------ 2 ptolou ptolou 4096 Jun  1 18:42 .
+drwxrwxr-x 4 ptolou ptolou 4096 Jun  1 18:42 ..
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file10.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file11.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file12.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file13.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file1.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file2.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file3.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file4.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file5.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file6.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file7.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file8.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file9.txt
+
+ls in mountdir
+total 200
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file10.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file12.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file13.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file1.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file2.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file3.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file4.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file5.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file7.txt
+-rw-rw-r-- 1 ptolou ptolou 20478 Jun  1 18:42 file8.txt
+
+ls in rootdir
+rootdir:
+total 16
+drwxrwxr-x 4 ptolou ptolou 4096 Jun  1 18:42 .
+drwxrwxr-x 8 ptolou ptolou 4096 Jun  1 18:42 ..
+drwx------ 2 ptolou ptolou 4096 Jun  1 18:42 .blocks
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file10.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file12.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file13.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file1.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file2.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file3.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file4.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file5.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file7.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file8.txt
+drwx------ 2 ptolou ptolou 4096 Jun  1 18:42 .metadata
+
+rootdir/.blocks:
+total 112
+drwx------ 2 ptolou ptolou 4096 Jun  1 18:42 .
+drwxrwxr-x 4 ptolou ptolou 4096 Jun  1 18:42 ..
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 14751508a7066782b60670cdb22e3b02a085131e
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 215133c58ec8478c59281d256fe8d0947ca14901
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 25e2bbee278a7ba51973a5dfea7638a4abf45a35
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 33f0d7f4de2cf6d6d91efadd40e00a934d525366
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 377a35744f67c0c3739636416c039cc748738336
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 387f369d76017840f415e5681cfb87c085cf49fe
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 3b73df9bc30bb7a9969fa8f776661c061ee88af6
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 443be50672f32f4e2c660608991101c655002f12
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 4dc73519659769f92994826a342e064db40e492e
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 5df64b8098d030ad81439e2c7653df9dcf6bc407
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 6729fae51be356e274086035096e64643da69ecb
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 67ed7dc935f8f8aad7dd8c54872753e28f4f3c96
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 6bae0c5c9982442bca8179a9a5c1d44303179374
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 7cf016bc0955598b8f9aec3a21ff609e36560a20
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 80ebb23ed4ab0e89f781c403e1794d21d4b0697f
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 880b4e745bedcedd0673cc2973d753b9e3129405
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 8fb3bd725a4eb80c2fd2a34f887b49284127ad12
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 9dc515bbad41e6de2eb787dbdaae630fc015ba05
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 aff3a08f17e2977bfc160bb498a8049129d68224
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 b1c4cc12967644644e99eedd3d191f0a2258fa32
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 b8d7fac544618a21ed155a729dc08b28b8f1e201
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 bc84ae45045e458648c30e9be6fddf35f7be0ce5
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 d40588f9a38e66cc3d26efb1812cfb7c82ccefab
+
+rootdir/.metadata:
+total 48
+drwx------ 2 ptolou ptolou 4096 Jun  1 18:42 .
+drwxrwxr-x 4 ptolou ptolou 4096 Jun  1 18:42 ..
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file10.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file12.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file13.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file1.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file2.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file3.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file4.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file5.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file7.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file8.txt
+
+Unmount the file system
+
+ls in mountdir
+total 0
+
+ls in rootdir
+rootdir:
+total 20
+drwxrwxr-x 4 ptolou ptolou 4096 Jun  1 18:42 .
+drwxrwxr-x 8 ptolou ptolou 4096 Jun  1 18:42 ..
+drwx------ 2 ptolou ptolou 4096 Jun  1 18:42 .blocks
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file10.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file12.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file13.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file1.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file2.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file3.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file4.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file5.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file7.txt
+-rw-rw-r-- 1 ptolou ptolou    0 Jun  1 18:42 file8.txt
+-rw-rw-r-- 1 ptolou ptolou 1118 Jun  1 18:42 .load
+drwx------ 2 ptolou ptolou 4096 Jun  1 18:42 .metadata
+
+rootdir/.blocks:
+total 112
+drwx------ 2 ptolou ptolou 4096 Jun  1 18:42 .
+drwxrwxr-x 4 ptolou ptolou 4096 Jun  1 18:42 ..
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 14751508a7066782b60670cdb22e3b02a085131e
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 215133c58ec8478c59281d256fe8d0947ca14901
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 25e2bbee278a7ba51973a5dfea7638a4abf45a35
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 33f0d7f4de2cf6d6d91efadd40e00a934d525366
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 377a35744f67c0c3739636416c039cc748738336
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 387f369d76017840f415e5681cfb87c085cf49fe
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 3b73df9bc30bb7a9969fa8f776661c061ee88af6
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 443be50672f32f4e2c660608991101c655002f12
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 4dc73519659769f92994826a342e064db40e492e
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 5df64b8098d030ad81439e2c7653df9dcf6bc407
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 6246cfe5adbdfbadd6b6f33ea9f2bdcea3a479d2
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 6729fae51be356e274086035096e64643da69ecb
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 67ed7dc935f8f8aad7dd8c54872753e28f4f3c96
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 6bae0c5c9982442bca8179a9a5c1d44303179374
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 6db6a1a34e10bd3d0ad313e86f8a0b6dbbd36cd1
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 7c093d9215d6f99e91fb6cf897e70e64c4d7e0d2
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 7cf016bc0955598b8f9aec3a21ff609e36560a20
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 80ebb23ed4ab0e89f781c403e1794d21d4b0697f
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 880b4e745bedcedd0673cc2973d753b9e3129405
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 8fb3bd725a4eb80c2fd2a34f887b49284127ad12
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 9dc515bbad41e6de2eb787dbdaae630fc015ba05
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 aff3a08f17e2977bfc160bb498a8049129d68224
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 b1c4cc12967644644e99eedd3d191f0a2258fa32
+-rw-rw-r-- 1 ptolou ptolou 4096 Jun  1 18:42 b8d7fac544618a21ed155a729dc08b28b8f1e201
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 bc84ae45045e458648c30e9be6fddf35f7be0ce5
+-rw-rw-r-- 1 ptolou ptolou 4094 Jun  1 18:42 d40588f9a38e66cc3d26efb1812cfb7c82ccefab
+
+rootdir/.metadata:
+total 48
+drwx------ 2 ptolou ptolou 4096 Jun  1 18:42 .
+drwxrwxr-x 4 ptolou ptolou 4096 Jun  1 18:42 ..
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file10.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file12.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file13.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file1.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file2.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file3.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file4.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file5.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file7.txt
+-rw-rw-r-- 1 ptolou ptolou  200 Jun  1 18:42 file8.txt
+
+Test test4.sh finished
